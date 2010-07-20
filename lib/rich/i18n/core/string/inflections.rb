@@ -4,6 +4,8 @@ module Rich
     module Core
       module String
         module Inflections
+          
+          # -- start FIXME: these methods are also defined in rich_pluralization
         
           def upcase_first
             empty? ?
@@ -22,6 +24,8 @@ module Rich
           def cp_case!(s)
             self == (result = cp_case(s))   ? nil : replace(result)
           end
+          
+          # -- end
   
           def singularize!
             downcase == (result = singularize).downcase ? nil : replace(result)

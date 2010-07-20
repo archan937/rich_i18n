@@ -172,6 +172,7 @@ Formtastic (optional)<br>
 h2. ToDo's
 
 * Override String interpolation (e.g. "foo #{"bar".t}") for preserving metadata (please note: by using String interpolation all translation meta data will be lost!)
+* Most String inflection methods are also defined in rich_pluralization (keep it DRY)
 
 h2. License
 
