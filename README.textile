@@ -1,0 +1,186 @@
+
+h1. Rich-i18n
+
+Enrichments (e9s) module for internationalization (i18n)
+
+h2. Introduction
+
+Rich-i18n is a module of E9s ("http://github.com/archan937/e9s":http://github.com/archan937/e9s) which enriches I18n, Formtastic, the String and Symbol classes. This simplifies internationalization of your Rails application making a Rails developers life much easier. A list of features:
+
+h3. I18n
+
+* @Default values@ - Use the translation key (or a portion) as default value: @"continue".t@ returns @"continue"@ and @"text.Welcome_to_our_site".t@ returns @"Welcome to our site"@
+* @An easy interface@ - Just call the @t@ method on string or symbols to translate
+* @Combine translations@ - Joining keys with spaces combines translations: @"Male / Female".t@ returns @"Man / Vrouw"@ in Dutch
+
+h3. Formtastic
+
+* @Labels and seatholders@ - Not only translate labels but also hint text (so called @seatholders@)
+* @Unobtrusive implementation@ - Translate labels and seatholders unobtrusively, in other words: leave your @semantic_form_for@ (view) code completely untouched
+* @Specific translations@ - Not only specify general translations for labels and seatholders, but make them model or even form specific
+
+h3. Inflections
+
+* @Preserve character casing@ - Rich-i18n preserves the casing in your translations: @"save".t@ returns @"bewaar"@, @"Save".t@ returns @"Bewaar"@ and @"SAVE".t@ returns @"BEWAAR"@ in Dutch
+
+h3. More available features when using E9s (enrichments)
+
+* @Localized pluralization@ - Translations only in singular form are sufficient enough as E9s can pluralize in foreign languages
+* @An easy interface for localized pluralizations@ - Just call the @pl@ method on string or symbols to pluralize
+* @Preserve pluralization@ - E9s singularizes or pluralizes your translations depending on the key: @"house".t@ returns @"huis"@ and @"Houses".t@ returns @"Huizen"@ in Dutch
+
+*Note*: keep in mind that you will have to use E9s to do this, please visit "http://github.com/archan937/e9s":http://github.com/archan937/e9s for more information.
+
+h2. Installation
+
+h3. Using Rich-i18n as gem
+
+Install the Rich-i18n gem:
+
+<pre>
+  sudo gem install rich_i18n
+</pre>
+
+Add rich_i18n in environment.rb as a gem dependency:
+
+<pre>
+  config.gem "rich_i18n"
+</pre>
+
+h3. Using Rich-i18n as plugin
+
+Install the Rich-i18n plugin:
+
+<pre>
+  ./script/plugin install git://github.com/archan937/rich_i18n.git 
+</pre>
+
+Optionally, you can also install the Formtastic plugin:
+
+<pre>
+  ./script/plugin install git://github.com/justinfrench/formtastic.git
+</pre>
+
+h2. Usage
+
+Just call the @t@ method on string or symbols to translate using Rich-i18n.
+
+h3. Populating config/locales
+
+At default, I18n uses @I18n::Backend::Simple@ of which translations are stored within YAML files located in @config/locales@. When adding a new language, it is adviced to copy a YAML file from "http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale":http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale in which you can add your translations. Of course, you can also use other I18n backends like @I18n::Backend::ActiveRecord@ for translations stored in the database.
+
+*Note*: specified in @config/locales/nl.yml@
+
+<pre>
+---
+nl:
+  
+  word:
+    "yes":   ja
+    "no":    nee
+    house:   huis
+    letter:  brief
+    sign:    teken
+    users:   gebruikers
+    more:    meer
+</pre>
+
+h3. String / Symbol methods
+
+Rich-i18n has enriched the String class with several inflection methods such as @upcase_first@, @cp_case@, @upcase_first!@ and @pluralize!@. Please visit "http://github.com/archan937/rich_i18n/blob/master/lib/rich/i18n/core/string/inflections.rb":http://github.com/archan937/rich_i18n/blob/master/lib/rich/i18n/core/string/inflections.rb to see all the methods.
+
+h3. Default values and case preservation
+
+When not specified, Rich-i18n returns a default value based on the passed key: it splits the key on @"."@ and (sort of) humanizes the last part. Sort of, because it actually replaces @"_"@ with @" "@ and it copies the casing of the key with the @cp_case@ method of the @String@ class.
+
+h3. Combined keys
+
+You can combine translations by using passed string containing translation keys joined with spaces.
+
+h3. I18n examples
+
+As a result of the YAML file specified above, you will get the following translations in your Rails console:
+
+<pre>
+  >> "house".t
+  => "huis"
+  >> "LETTER".t
+  => "BRIEF"
+  >> "application.index.Welcome_to_our_site".t
+  => "Welcome to our site"
+  >> "Sign".t
+  => "Teken"
+  >> "MORE USERS".t
+  => "MEER GEBRUIKERS"
+  >> "Yes / No".t
+  => "Ja / Nee"
+</pre>
+
+h3. Labels and seatholders
+
+You can translate @labels@ and @seatholders@ (placeholders :D) within Formtastic forms without altering its code.
+
+*Note*: specified in @config/locales/nl.yml@
+
+<pre>
+---
+nl:
+  
+  word:
+    password:       wachtwoord
+  
+  label:
+    user_name:      gebruikersnaam
+    content:        bericht
+    
+    Question:
+      content:      jouw vraag
+    
+    Answer:
+      content:      jouw antwoord
+    
+    (search_form)
+      criteria:     uw zoekcriteria
+  
+  seatholder:
+    email_address:  uw.naam@een.website.nl
+    
+    Question:
+      content:      Hoeveel uren zitten in een dag?
+    
+    Answer:
+      content:      24 uur
+    
+    (search_form)
+      criteria:     '&Voorbeeld'
+</pre>
+
+h2. Contact me
+
+For support, remarks and requests please mail me at "paul.engel@holder.nl":mailto:paul.engel@holder.nl.
+
+h2. Credit
+
+This Rails gem / plugin depends on:
+
+i18n<br>
+"http://github.com/svenfuchs/i18n":http://github.com/svenfuchs/i18n
+
+Formtastic (optional)<br>
+"http://github.com/justinfrench/formtastic":http://github.com/justinfrench/formtastic
+
+h2. ToDo's
+
+* Override String interpolation (e.g. "foo #{"bar".t}") for preserving metadata (please note: by using String interpolation all translation meta data will be lost!)
+
+h2. License
+
+Copyright (c) 2010 Paul Engel, released under the MIT license
+
+"http://holder.nl":http://holder.nl - "http://codehero.es":http://codehero.es - "http://gettopup.com":http://gettopup.com - "http://twitter.com/archan937":http://twitter.com/archan937 - "paul.engel@holder.nl":mailto:paul.engel@holder.nl
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
