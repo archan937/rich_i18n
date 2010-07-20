@@ -1,5 +1,9 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.0.1 (July 21, 2010)
+
+* Fixed internationalization bug (caused by pluralization assumptions)
+
 == Version 1.0.0 (July 20, 2010)
 
 * Initial release (extracted Rich-i18n from E9s)

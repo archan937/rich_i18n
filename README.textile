@@ -61,6 +61,33 @@ Optionally, you can also install the Formtastic plugin:
   ./script/plugin install git://github.com/justinfrench/formtastic.git
 </pre>
 
+Install i18n if you haven't already:
+
+<pre>
+  sudo gem install i18n
+</pre>
+
+h3. Testing Rich-i18n out-of-the-box
+
+Set the default locale to @:nl@ in @environment.rb@:
+
+<pre>
+  config.i18n.default_locale = :nl
+</pre>
+
+Run the Rails console:
+
+<pre>
+  ./script/console
+</pre>
+
+Start translating in Dutch:
+
+<pre>
+  >> "Male / Female".t
+  => "Man / Vrouw"
+</pre>
+
 h2. Usage
 
 Just call the @t@ method on string or symbols to translate using Rich-i18n.

@@ -12,12 +12,12 @@ module Rich
           module InstanceMethods
             def t(options = {})
               self.split(" ").collect do |string|
-                key              = string.include?(".") || !String.new.respond_to?(:pl) ? string.dup : "word.#{string}"
+                key              = string.include?(".") ? string.dup : "word.#{string}"
                 default          = key.split(".").last
                 translating_word = key.starts_with?("word.")
     
                 key.downcase!
-                options[:pluralize]          ||= String.new.respond_to?(:pl)
+                options[:pluralize]            = "".respond_to?(:pl) && (options[:pluralize].nil? || options[:pluralize])
                 options[:translate_callback] ||= LOGGER_PROC if RAILS_ENV == "development"
 
                 if options.include? :default
@@ -30,7 +30,7 @@ module Rich
                   value = s.dup
     
                   if translating_word
-                    unless translated = !s.empty?
+                    unless (translated = !s.empty?) or !"".respond_to?(:pl)
                       key.singularize!
                       s = i18n_t key, options.merge({:default => ""})
                       value = s.dup
