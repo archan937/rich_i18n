@@ -55,16 +55,18 @@ Install the Rich-i18n plugin:
   ./script/plugin install git://github.com/archan937/rich_i18n.git 
 </pre>
 
-Optionally, you will have to install the @Formtastic@ plugin when translating @labels@ and @seatholders@:
-
-<pre>
-  ./script/plugin install git://github.com/justinfrench/formtastic.git
-</pre>
-
 Install i18n if you haven't already:
 
 <pre>
   sudo gem install i18n
+</pre>
+
+h3. Optional
+
+You will have to install the @Formtastic@ plugin when translating @labels@ and @seatholders@ with *Rich-i18n as plugin*:
+
+<pre>
+  ./script/plugin install git://github.com/justinfrench/formtastic.git
 </pre>
 
 When wanting to use @seatholders@, please include @seat_holder.js@ in your template:
