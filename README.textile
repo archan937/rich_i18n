@@ -120,7 +120,7 @@ nl:
     more:    meer
 </pre>
 
-h3. String / Symbol methods
+h3. String methods
 
 Rich-i18n has enriched the String class with several inflection methods such as @upcase_first@, @cp_case@, @upcase_first!@ and @pluralize!@. Please visit "http://github.com/archan937/rich_i18n/blob/master/lib/rich/i18n/core/string/inflections.rb":http://github.com/archan937/rich_i18n/blob/master/lib/rich/i18n/core/string/inflections.rb to see all the methods.
 
