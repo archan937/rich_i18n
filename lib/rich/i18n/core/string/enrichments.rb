@@ -16,6 +16,8 @@ module Rich
               alias_method :<<, :concat_with_rich_i18n
             
               alias_method_chain :initialize_copy, :rich_i18n
+
+              attr_accessor :meta_data
               attr_accessor :merged_strings
             end
           end

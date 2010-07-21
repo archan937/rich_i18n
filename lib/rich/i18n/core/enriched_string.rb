@@ -4,8 +4,6 @@ module Rich
     module Core
       class EnrichedString < ::String
       
-        attr_accessor :meta_data
-      
         def initialize(s = "", meta_data = nil)
           super s
           @meta_data = meta_data || (s.meta_data.dup unless (s.meta_data.nil? rescue true)) || {}

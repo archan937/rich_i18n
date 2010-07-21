@@ -1,5 +1,10 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.0.2 (July 21, 2010)
+
+* Added 'filled?' to NilClass
+* Moved 'meta_data' from EnrichedString to String
+
 == Version 1.0.1 (July 21, 2010)
 
 * Fixed internationalization bug (caused by pluralization assumptions)
