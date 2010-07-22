@@ -1,5 +1,10 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.0.3 (July 22, 2010)
+
+* Specified the locales with relative paths
+* Fixed error during gem initialization
+
 == Version 1.0.2 (July 21, 2010)
 
 * Added 'filled?' to NilClass

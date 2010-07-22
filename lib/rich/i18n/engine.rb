@@ -10,9 +10,9 @@ module Rich
         if test_class
           test_locale = test_class.name.match(/(Rich\:\:I18n\:\:Test\:\:Locales\:\:)(\w+)/).captures[1].downcase.to_sym
           
-          I18n.load_path  =          [File.join("vendor", "plugins", "rich_i18n", "locales", "#{test_locale}.yml")]
+          I18n.load_path  =    [File.join(File.dirname(__FILE__), "..", "..", "..", "locales", "#{test_locale}.yml")]
         else
-          I18n.load_path += Dir[Rails.root.join("vendor", "plugins", "rich_i18n", "locales", "*.yml")]
+          I18n.load_path += Dir[File.join(File.dirname(__FILE__), "..", "..", "..", "locales", "*.yml")]
         end
 
         I18n.backend.reload!

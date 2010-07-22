@@ -1,1 +1,1 @@
-require "rich/i18n"
+require "rich_i18n"
