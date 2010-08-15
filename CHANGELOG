@@ -1,5 +1,16 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.0.4 (August 15, 2010)
+
+* Introduced Rich::I18n::Engine.enable_i18n_cms which used Rich-Cms for an internationalization CMS (yay, finally!)
+* Improved EnrichedString.to_es implementation (fixed attribute value by HTML escaping)
+* Improved own caching of translations (added locale to translation key and clearing cache at every request)
+* Improved Rich::I18n::Engine.can_enrich_output? implementation
+* Added option Rich::I18n::Engine.cache_translations
+* Fixed missing " " within EnrichedString.merged_strings
+* Using the Jzip::Engine instead of Jzip::Plugin
+* Changed meta data specification
+
 == Version 1.0.3 (July 22, 2010)
 
 * Specified the locales with relative paths
