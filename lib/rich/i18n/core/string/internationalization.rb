@@ -67,12 +67,13 @@ module Rich
           private
 
             RICH_I18N_OPTIONS = [:count, :pluralize, :capitalize, :translate_callback]
-            LOGGER_PROC = Proc.new{|translation, key, options| puts "INFO: I18n.t #{key.inspect}, #{options.inspect}"}
+            LOGGER_PROC = Proc.new{|translation, key, options| puts "== RICH-I18N: I18n.t #{key.inspect}, #{options.inspect}"}
           
             @@i18n_translations = {}
 
             def i18n_t(key, opts = {})
               options = opts.inject({}) do |hash, (k, v)|
+                          # FIXME: this code is to handle interpolated translations... however, this needs to be refactored
                           hash[k] = v.is_a?(String) && v.include?("<i18n") ? v.gsub(/(\<i18n[^\>]+\>)|(\<\/i18n\>)/, "") : v unless RICH_I18N_OPTIONS.include?(k)
                           hash
                         end
