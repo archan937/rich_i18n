@@ -21,7 +21,7 @@ module Rich
           
           module InstanceMethods
             def t(options = {})
-              self.split(" ").collect do |string|
+              self.split(" ").inject([]) do |array, string|
                 key              = string.include?(".") ? string.dup : "word.#{string}"
                 default          = key.split(".").last
                 translating_word = key.starts_with?("word.")
@@ -59,9 +59,10 @@ module Rich
                   s.cp_case! options[:capitalize] ? default.capitalize : default
                 end
               
-                EnrichedString.new s, {:key => string, :actual_key => key, :actual_value => value}
+                array << " " unless array.empty?
+                array << EnrichedString.new(s, {:key => key, :value => value, :locale => I18n.locale, :derivative_key => string})
       
-              end.join(" ")
+              end.join
             end
           
           private
