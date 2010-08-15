@@ -9,6 +9,7 @@ Rich-i18n is a module of E9s ("http://github.com/archan937/e9s":http://github.co
 
 h3. I18n
 
+* @Translate on-site@ - Just specify you want to use Rich-CMS ("http://github.com/archan937/rich_cms":http://github.com/archan937/rich_cms) and you are set to translate in the front-end
 * @Default values@ - Use the translation key (or a portion) as default value: @"continue".t@ returns @"continue"@ and @"text.Welcome_to_our_site".t@ returns @"Welcome to our site"@
 * @An easy interface@ - Just call the @t@ method on string or symbols to translate
 * @Combine translations@ - Joining keys with spaces combines translations: @"Male / Female".t@ returns @"Man / Vrouw"@ in Dutch
@@ -250,6 +251,9 @@ i18n<br>
 Hpricot<br>
 "http://github.com/whymirror/hpricot":http://github.com/whymirror/hpricot (thanks Why!)
 
+Rich-CMS (optional)<br>
+"http://github.com/archan937/rich_cms":http://github.com/archan937/rich_cms
+
 Formtastic (optional)<br>
 "http://github.com/justinfrench/formtastic":http://github.com/justinfrench/formtastic
 
@@ -260,6 +264,16 @@ h2. ToDo's
 
 * Override String interpolation (e.g. "foo #{"bar".t}") for preserving metadata (please note: by using String interpolation all translation meta data will be lost!)
 * Most String inflection methods are also defined in rich_pluralization (keep it DRY)
+
+h2. E9s
+
+E9s - "http://github.com/archan937/e9s":http://github.com/archan937/e9s
+
+h3. E9s modules
+
+* Rich-CMS - "http://github.com/archan937/rich_cms":http://github.com/archan937/rich_cms
+* Rich-i18n - "http://github.com/archan937/rich_i18n":http://github.com/archan937/rich_i18n
+* Rich-pluralization - "http://github.com/archan937/rich_pluralization":http://github.com/archan937/rich_pluralization
 
 h2. License
 
