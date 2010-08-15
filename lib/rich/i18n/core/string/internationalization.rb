@@ -6,9 +6,19 @@ module Rich
         module Internationalization
 
           def self.included(base)
+            base.extend ClassMethods
             base.send :include, InstanceMethods
+            base.class_eval do
+              cattr_accessor :i18n_translations
+            end
           end
-        
+          
+          module ClassMethods
+            def clear_translations
+              i18n_translations.clear
+            end
+          end
+          
           module InstanceMethods
             def t(options = {})
               self.split(" ").collect do |string|
@@ -67,8 +77,12 @@ module Rich
                           hash
                         end
             
-              k = "#{key.inspect}, #{options.inspect}"
-              translation = (@@i18n_translations[k] ||= I18n.t(key, options).dup)
+              k = "#{I18n.locale} #{key.inspect}, #{options.inspect}"
+              translation = if Engine.cache_translations
+                              (@@i18n_translations[k] ||= I18n.t(key, options)).try :dup
+                            else
+                              I18n.t key, options
+                            end
               opts[:translate_callback].try :call, translation, key, options
     
               translation
