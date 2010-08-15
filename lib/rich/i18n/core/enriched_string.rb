@@ -15,9 +15,20 @@ module Rich
         end
       
         def to_es
-          @meta_data.filled? and ::Rich::I18n::Engine.can_enrich_output? ? 
-            "<i18n #{@meta_data.collect{|k, v| "data-#{k}=#{v.inspect}"}.join(" ")}>#{to_s}</i18n>" :
-            to_s
+          @meta_data.filled? && Engine.can_enrich_output? ? to_tag : to_s
+        end
+        
+      private
+      
+        def to_tag
+          keys  = [:key, :value, :locale, :derivative_key]
+          data  = @meta_data.reject{|k, v| !keys.include?(k.to_sym)}
+
+          tag   = :i18n
+          attrs = data.collect{|k, v| "data-#{k}=\"#{::ERB::Util.html_escape v}\""}.join " "
+          value = to_s
+          
+          "<#{tag} #{attrs}>#{value}</#{tag}>"
         end
         
       end
