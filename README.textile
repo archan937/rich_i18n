@@ -247,6 +247,9 @@ This Rails gem / plugin depends on:
 i18n<br>
 "http://github.com/svenfuchs/i18n":http://github.com/svenfuchs/i18n
 
+Hpricot<br>
+"http://github.com/whymirror/hpricot":http://github.com/whymirror/hpricot (thanks Why!)
+
 Formtastic (optional)<br>
 "http://github.com/justinfrench/formtastic":http://github.com/justinfrench/formtastic
 
