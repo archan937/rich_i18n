@@ -7,6 +7,7 @@ module Rich
       attr_accessor :enable_enriched_output, :cache_translations
       
       def init(test_class = nil)
+        @enable_enriched_output = true if @enable_enriched_output.nil?
         @cache_translations     = true if @cache_translations    .nil?
         
         ::Jzip::Engine.add_template_location({File.join(File.dirname(__FILE__), "..", "..", "..", "assets", "jzip") => RAILS_ROOT + "/public/javascripts"})
@@ -23,10 +24,20 @@ module Rich
         test_locale
       end
       
-      def can_enrich_output?
-        !enable_enriched_output.blank? and (enable_enriched_output.is_a?(Symbol) ? (send(enable_enriched_output) rescue false) : enable_enriched_output)
+      def current_controller=(current_controller)
+        @current_controller = current_controller
+        @can_enrich_output  = nil
       end
-    
+
+      def can_enrich_output?
+        if @can_enrich_output.nil?
+          @can_enrich_output = !!@enable_enriched_output &&
+                                (@enable_enriched_output.is_a?(Symbol) ? (@current_controller.send(@enable_enriched_output) rescue false) : @enable_enriched_output)
+        else
+          @can_enrich_output
+        end
+      end
+      
     end
   end
 end
