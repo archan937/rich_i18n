@@ -9,7 +9,7 @@ module Rich
           class InternationalizationTest < ActiveSupport::TestCase
             setup do
               include Setup
-              I18n.locale = ::Rich::I18n::Engine.init(self)
+              I18n.locale = Engine.init(self)
             end
       
             test "dutch_translations" do

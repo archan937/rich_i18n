@@ -7,7 +7,7 @@ module Rich
       class EngineTest < ActiveSupport::TestCase
         setup do
           include Setup
-          I18n.locale = ::Rich::I18n::Engine.init(Locales::NL)
+          I18n.locale = Engine.init(Locales::NL)
         end
       
         # test "something" do
