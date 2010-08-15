@@ -12,7 +12,7 @@ h3. I18n
 * @Default values@ - Use the translation key (or a portion) as default value: @"continue".t@ returns @"continue"@ and @"text.Welcome_to_our_site".t@ returns @"Welcome to our site"@
 * @An easy interface@ - Just call the @t@ method on string or symbols to translate
 * @Combine translations@ - Joining keys with spaces combines translations: @"Male / Female".t@ returns @"Man / Vrouw"@ in Dutch
-* @Preserve i18n meta data@ - Rich-i18n preserves the translation key, value, locale and derivative key (the argument passed translation). Enquiring this can come in handy when implementing an internationalization CMS (see "Rich-CMS":http://github.com/archan937/rich_cms).
+* @Preserve i18n meta data@ - Rich-i18n preserves the translation @key@, @value@, @locale@ and @derivative key@ (the argument passed for translation). Enquiring this can come in handy when implementing an internationalization CMS (see "Rich-CMS":http://github.com/archan937/rich_cms).
 
 h3. Formtastic
 
@@ -137,7 +137,7 @@ You can combine translations by using passed string containing translation keys 
 
 h3. Translation meta data with EnrichedString
 
-When translating text, you possibly want to know the @key@, the @value@, the @locale@ and the @derivative key@ (the argument passed translation). Rich-i18n preserves just that in an @EnrichedString@ which is a subclass of @String@. Calling @.meta_data@ returns a hash with the meta data:
+When translating text, you possibly want to know the @key@, the @value@, the @locale@ and the @derivative key@ (the argument passed for translation). Rich-i18n preserves just that in an @EnrichedString@ which is a subclass of @String@. Calling @.meta_data@ returns a hash with the meta data:
 
 <pre>
   >> "MORE".t.class
