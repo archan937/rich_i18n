@@ -1,6 +1,6 @@
 = Rich-i18n CHANGELOG
 
-== Version 1.0.4 (August 15, 2010)
+== Version 1.1.0 (August 15, 2010)
 
 * Introduced Rich::I18n::Engine.enable_i18n_cms which used Rich-Cms for an internationalization CMS (yay, finally!)
 * Improved EnrichedString.to_es implementation (fixed attribute value by HTML escaping)
