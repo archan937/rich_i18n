@@ -4,9 +4,10 @@ module Rich
     module Engine
       extend self
     
-      attr_accessor :enable_enriched_output
-    
+      attr_accessor :enable_enriched_output, :cache_translations
+      
       def init(test_class = nil)
+        @cache_translations     = true if @cache_translations    .nil?
         if test_class
           test_locale = test_class.name.match(/(Rich\:\:I18n\:\:Test\:\:Locales\:\:)(\w+)/).captures[1].downcase.to_sym
           
