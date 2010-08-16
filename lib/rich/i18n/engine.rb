@@ -22,6 +22,11 @@ module Rich
         load_i18n test_class
       end
       
+      def current_controller=(current_controller)
+        @current_controller = current_controller
+        @can_enrich_output  = nil
+      end
+      
       def load_i18n(test_class)
         if test_class
           test_locale = test_class.name.match(/(Rich\:\:I18n\:\:Test\:\:Locales\:\:)(\w+)/).captures[1].downcase.to_sym
@@ -47,11 +52,6 @@ module Rich
           ::I18n.backend = ::I18n::Backend::Chain.new ::I18n::Backend::ActiveRecord.new, ::I18n.backend
           ::I18n.backend.extend ::I18n::Backend::Fallbacks
         end
-      end
-      
-      def current_controller=(current_controller)
-        @current_controller = current_controller
-        @can_enrich_output  = nil
       end
 
       def can_enrich_output?
