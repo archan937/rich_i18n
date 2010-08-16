@@ -26,7 +26,8 @@ module Rich
                 default          = key.split(".").last
                 translating_word = key.starts_with?("word.")
     
-                key.downcase!
+                key.downcase! unless string.match(/^(label|seatholder)\./)
+
                 options[:pluralize]            = "".respond_to?(:pl) && (options[:pluralize].nil? || options[:pluralize])
                 options[:translate_callback] ||= LOGGER_PROC if RAILS_ENV == "development"
 
