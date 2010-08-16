@@ -8,12 +8,12 @@ module Rich
       end
 
       def input_with_enrichments(*args)
-        object      = (@object.class.name if @object) || @object_name.match(/\[(\w+)_attributes\]/).captures.first.classify
+        object      = ((@object.class.name if @object) || @object_name.match(/\[(\w+)_attributes\]/).captures.first).camelize
         method_arg  = args.shift
         method      = method_arg.to_s
         options     = args.extract_options!
         wrapper_tag = options.delete(:wrapper_tag)
-
+        
         unless options.include?(:label)
           keys = [:"label.#{object}.#{method}", :"label.#{method}", :"word.#{method}"]
         
