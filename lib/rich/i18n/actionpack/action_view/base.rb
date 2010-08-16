@@ -3,16 +3,13 @@ module ActionView
   class Base
 
   	def rich_i18n
-  	  render :file => File.join(File.dirname(__FILE__), "..", "..", "..", "..", "..", "app", "views", "rich_i18n.html.erb")
+  	  render :file => File.join(File.dirname(__FILE__), "..", "..", "..", "..", "app", "views", "rich_i18n.html.erb")
   	end
 
     def render_with_rich_i18n(*args, &block)
-      ::Rich::I18n::Engine.current_controller = @controller
       (html = render_without_rich_i18n(*args, &block)).include?("<i18n ") ?
         ::Rich::I18n::Actionpack::ActionView::Sanitizor.sanitize_html(html) :
         html
-    ensure
-      ::Rich::I18n::Engine.current_controller = nil
     end
     alias_method_chain :render, :rich_i18n
 

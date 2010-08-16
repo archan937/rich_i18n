@@ -10,7 +10,14 @@ module Rich
         @enable_enriched_output = true if @enable_enriched_output.nil?
         @cache_translations     = true if @cache_translations    .nil?
         
-        ::Jzip::Engine.add_template_location({File.join(File.dirname(__FILE__), "..", "..", "..", "assets", "jzip") => RAILS_ROOT + "/public/javascripts"})
+        %w(controllers).each do |dir|
+          path = File.join File.dirname(__FILE__), "..", "..", "app", dir
+          $LOAD_PATH << path
+          ActiveSupport::Dependencies.load_paths << path
+          ActiveSupport::Dependencies.load_once_paths.delete path
+        end
+        
+        ::Jzip::Engine.add_template_location({File.join(File.dirname(__FILE__), "..", "..", "assets", "jzip") => File.join(RAILS_ROOT, "public", "javascripts")})
         
         load_i18n test_class
       end
