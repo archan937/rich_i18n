@@ -81,12 +81,6 @@ When wanting to use @seatholders@, please include @seat_holder.js@ in your templ
 
 h3. Testing Rich-i18n out-of-the-box
 
-Set the default locale to @:nl@ in @environment.rb@:
-
-<pre>
-  config.i18n.default_locale = :nl
-</pre>
-
 Run the Rails console:
 
 <pre>
@@ -96,6 +90,8 @@ Run the Rails console:
 Start translating in Dutch:
 
 <pre>
+  >> I18n.locale = :nl
+  => :nl
   >> "Male / Female".t
   => "Man / Vrouw"
 </pre>
@@ -262,7 +258,8 @@ SeatHolder (optional)<br>
 
 h2. ToDo's
 
-* Override String interpolation (e.g. "foo #{"bar".t}") for preserving metadata (please note: by using String interpolation all translation meta data will be lost!)
+* Provide a rake task to create the Translation model and migration files
+* Use a better implementation to tackle String interpolation (e.g. "foo #{"bar".t}") to preserve meta data
 * Most String inflection methods are also defined in rich_pluralization (keep it DRY)
 
 h2. E9s
