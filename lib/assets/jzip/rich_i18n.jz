@@ -1,3 +1,9 @@
 
+var onSeatHolderReady = function() {
+//= require jquery/extensions/modules
+
 //= require rich
 //= require rich/i18n
+};
+
+//= require jquery/seat_holder
