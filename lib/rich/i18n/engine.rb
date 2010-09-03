@@ -53,6 +53,11 @@ module Rich
           ::I18n.backend.extend ::I18n::Backend::Fallbacks
         end
       end
+      
+      def enable_enriched_output=(value)
+        @enable_enriched_output = value
+        @can_enrich_output      = nil
+      end
 
       def can_enrich_output?
         if @can_enrich_output.nil?
