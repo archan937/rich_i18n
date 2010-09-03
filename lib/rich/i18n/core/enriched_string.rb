@@ -2,21 +2,19 @@
 module Rich
   module I18n
     module Core
-      class EnrichedString < ::String
+      class EnrichedString
+        
+        delegate :empty?, :blank?, :to_json, :to => :@string
       
-        def initialize(s = "", meta_data = nil)
-          super s
-          @meta_data = meta_data || (s.meta_data.dup unless (s.meta_data.nil? rescue true)) || {}
-        end
-      
-        def initialize_copy_with_rich_i18n(s)
-          result = super(s)
-          result.meta_data = self.meta_data.dup
+        def initialize(string = "", meta_data = nil)
+          @string    = string
+          @meta_data = meta_data || (s.meta_data.dup unless (string.meta_data.nil? rescue true)) || {}
         end
       
         def to_es
-          @meta_data.filled? && Engine.can_enrich_output? ? to_tag : to_s
+          (@meta_data.filled? && Engine.can_enrich_output?) ? to_tag : @string
         end
+        alias_method :to_s, :to_es
         
       private
       
@@ -26,7 +24,7 @@ module Rich
 
           tag   = :i18n
           attrs = data.collect{|k, v| "data-#{k}=\"#{::ERB::Util.html_escape v}\""}.join " "
-          value = to_s
+          value = @string
           
           "<#{tag} #{attrs}>#{value}</#{tag}>"
         end

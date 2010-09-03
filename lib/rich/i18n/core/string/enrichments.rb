@@ -5,19 +5,17 @@ module Rich
       module String
         module Enrichments
         
-          # TODO: override String interpolation (e.g. "foo #{"bar".t}")
-        
           def self.included(base)
             base.class_eval do
+              alias_method_chain :initialize_copy, :rich_i18n
+              
               alias_method :add_without_rich_i18n, :+
               alias_method :+, :add_with_rich_i18n
+              
               alias_method_chain :concat, :rich_i18n
               undef_method :<<
               alias_method :<<, :concat_with_rich_i18n
-            
-              alias_method_chain :initialize_copy, :rich_i18n
 
-              attr_accessor :meta_data
               attr_accessor :merged_strings
             end
           end
