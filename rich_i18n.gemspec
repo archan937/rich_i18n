@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Paul Engel"]
-  s.date = %q{2010-08-15}
+  s.date = %q{2010-09-30}
   s.description = %q{Rich-i18n is a module of E9s (http://github.com/archan937/e9s) which enriches I18n, Formtastic, the String and Symbol classes. This simplifies internationalization of your Rails application making a Rails developers life much easier.}
   s.email = %q{paul.engel@holder.nl}
   s.extra_rdoc_files = [
@@ -22,14 +22,18 @@ Gem::Specification.new do |s|
      "README.textile",
      "Rakefile",
      "VERSION",
-     "app/views/rich_i18n.html.erb",
-     "assets/jzip/rich.js",
-     "assets/jzip/rich/i18n.js",
-     "assets/jzip/rich_i18n.jz",
      "init.rb",
      "install.rb",
+     "lib/app/views/rich_i18n.html.erb",
+     "lib/assets/jzip/jquery/core.jz",
+     "lib/assets/jzip/jquery/extensions/modules.js",
+     "lib/assets/jzip/jquery/seat_holder.js",
+     "lib/assets/jzip/rich.js",
+     "lib/assets/jzip/rich/i18n.js",
+     "lib/assets/jzip/rich_i18n.jz",
      "lib/rich/i18n.rb",
      "lib/rich/i18n/actionpack.rb",
+     "lib/rich/i18n/actionpack/action_controller/base.rb",
      "lib/rich/i18n/actionpack/action_controller/dispatcher.rb",
      "lib/rich/i18n/actionpack/action_view/base.rb",
      "lib/rich/i18n/actionpack/action_view/sanitizor.rb",
@@ -55,6 +59,10 @@ Gem::Specification.new do |s|
      "lib/rich_i18n.rb",
      "locales/nl.yml",
      "rails/init.rb",
+     "rails_generators/rich_i18n_translation/rich_i18n_translation_generator.rb",
+     "rails_generators/rich_i18n_translation/templates/config.rb",
+     "rails_generators/rich_i18n_translation/templates/migration.rb",
+     "rails_generators/rich_i18n_translation/templates/model.rb",
      "rich_i18n.gemspec",
      "tasks/rich_i18n_tasks.rake",
      "test/core/string/inflections_test.rb",
@@ -85,17 +93,20 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<i18n>, ["= 0.3.7"])
+      s.add_runtime_dependency(%q<jzip>, [">= 1.0.10"])
       s.add_runtime_dependency(%q<hpricot>, [">= 0"])
-      s.add_runtime_dependency(%q<formtastic>, [">= 0"])
+      s.add_runtime_dependency(%q<formtastic>, ["= 0.9.7"])
     else
       s.add_dependency(%q<i18n>, ["= 0.3.7"])
+      s.add_dependency(%q<jzip>, [">= 1.0.10"])
       s.add_dependency(%q<hpricot>, [">= 0"])
-      s.add_dependency(%q<formtastic>, [">= 0"])
+      s.add_dependency(%q<formtastic>, ["= 0.9.7"])
     end
   else
     s.add_dependency(%q<i18n>, ["= 0.3.7"])
+    s.add_dependency(%q<jzip>, [">= 1.0.10"])
     s.add_dependency(%q<hpricot>, [">= 0"])
-    s.add_dependency(%q<formtastic>, [">= 0"])
+    s.add_dependency(%q<formtastic>, ["= 0.9.7"])
   end
 end
 

@@ -12,8 +12,8 @@ begin
     gemspec.homepage    = "http://github.com/archan937/rich_i18n"
     gemspec.author      = "Paul Engel"
 
-    gemspec.add_dependency "jzip", ">= 1.0.10"
-    gemspec.add_dependency "i18n", "0.3.7"
+    gemspec.add_dependency "i18n"      , "0.3.7"
+    gemspec.add_dependency "jzip"      , ">= 1.0.10"
     gemspec.add_dependency "hpricot"
     gemspec.add_dependency "formtastic", "0.9.7"
   end
