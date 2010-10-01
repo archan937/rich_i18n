@@ -1,5 +1,17 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.2.0 (October 1, 2010)
+
+* Fixed bug: corrected String.to_output
+* Added rails generator 'rich_i18n_translation'
+* Not inheriting EnrichedString from the String class anymore (this made String interpolation possible: but it still needs some correction)
+* Initializing Rich-i18n Javascript modules on page load
+* Corrected jQuery dependencies and SeatHolder inclusion (yay!)
+* Camelizing the object in the label and seatholder key
+* Fixed minor bug: not downcasing label and seatholder keys
+* Moved app and assets to the libs directory
+* Using around_filter to assign Rich::I18n::Engine.current_controller
+
 == Version 1.1.0 (August 15, 2010)
 
 * Introduced Rich::I18n::Engine.enable_i18n_cms which used Rich-Cms for an internationalization CMS (yay, finally!)
