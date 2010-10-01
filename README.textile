@@ -244,11 +244,11 @@ This Rails gem / plugin depends on:
 i18n<br>
 "http://github.com/svenfuchs/i18n":http://github.com/svenfuchs/i18n
 
-Formtastic (optional)<br>
-"http://github.com/justinfrench/formtastic":http://github.com/justinfrench/formtastic
-
 Hpricot<br>
 "http://github.com/whymirror/hpricot":http://github.com/whymirror/hpricot (thanks Why!)
+
+Formtastic (optional)<br>
+"http://github.com/justinfrench/formtastic":http://github.com/justinfrench/formtastic
 
 Rich-CMS (optional)<br>
 "http://codehero.es/rails_gems_plugins/rich_cms":http://codehero.es/rails_gems_plugins/rich_cms <br>
