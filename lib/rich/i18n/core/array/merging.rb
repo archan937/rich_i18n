@@ -11,7 +11,7 @@ module Rich
             end
           end
         
-          def join_with_rich_i18n(sep = "")
+          def join_with_rich_i18n(sep = $,)
             if size == 1 && first.is_a?(EnrichedString)
               first
             else
