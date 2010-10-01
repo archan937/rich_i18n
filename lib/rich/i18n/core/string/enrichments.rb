@@ -56,7 +56,7 @@ module Rich
           def to_output
             merged_strings.blank? ?
               to_es :
-              merged_strings.collect(&:to_output).join
+              merged_strings.collect(&:to_output).join(" ")
           end
         
         end
