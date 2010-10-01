@@ -4,11 +4,17 @@ module Rich
     module Core
       class EnrichedString
         
-        delegate :empty?, :blank?, :to_json, :to => :@string
+        delegate :empty?, :blank?, :to_json, :+, :<<, :concat, :to => :@string
+        
+        attr_reader :string
       
         def initialize(string = "", meta_data = nil)
           @string    = string
           @meta_data = meta_data || (s.meta_data.dup unless (string.meta_data.nil? rescue true)) || {}
+        end
+        
+        def enriched_string?
+          true
         end
       
         def to_es

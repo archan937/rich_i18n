@@ -26,7 +26,7 @@ module Rich
           end
 
           def add_with_rich_i18n(other)
-            strings, result = self.merged_strings.try(:dup) || [], add_without_rich_i18n(other)
+            strings, result = self.merged_strings.try(:dup) || [], add_without_rich_i18n(other.enriched_string? ? other.string : other)
           
             if (result.merged_strings = strings).empty?
               result.merged_strings << self.dup
@@ -50,7 +50,7 @@ module Rich
           end
         
           def enriched_string?
-            is_a?(EnrichedString) or (merged_strings || []).any?(&:enriched_string?)
+            (merged_strings || []).any?(&:enriched_string?)
           end
         
           def to_output
