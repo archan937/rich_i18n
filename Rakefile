@@ -9,7 +9,7 @@ begin
     gemspec.summary     = "Enrichments (e9s) module for internationalization (i18n)"
     gemspec.description = "Rich-i18n is a module of E9s (http://github.com/archan937/e9s) which enriches I18n, Formtastic, the String and Symbol classes. This simplifies internationalization of your Rails application making a Rails developers life much easier."
     gemspec.email       = "paul.engel@holder.nl"
-    gemspec.homepage    = "http://github.com/archan937/rich_i18n"
+    gemspec.homepage    = "http://codehero.es/rails_gems_plugins/rich_i18n"
     gemspec.author      = "Paul Engel"
 
     gemspec.add_dependency "i18n"      , "0.3.7"

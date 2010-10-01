@@ -1,5 +1,11 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.2.1 (October 2, 2010)
+
+* Altered the default delimiter (separator) of Array.join
+* Being able to concatenate (+, <<, concat) Strings with EnrichedStrings
+* Not overriding ERB::Compiler::Buffer.push anymore
+
 == Version 1.2.0 (October 1, 2010)
 
 * Fixed bug: corrected String.to_output

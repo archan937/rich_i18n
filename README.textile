@@ -244,16 +244,18 @@ This Rails gem / plugin depends on:
 i18n<br>
 "http://github.com/svenfuchs/i18n":http://github.com/svenfuchs/i18n
 
+Formtastic (optional)<br>
+"http://github.com/justinfrench/formtastic":http://github.com/justinfrench/formtastic
+
 Hpricot<br>
 "http://github.com/whymirror/hpricot":http://github.com/whymirror/hpricot (thanks Why!)
 
 Rich-CMS (optional)<br>
+"http://codehero.es/rails_gems_plugins/rich_cms":http://codehero.es/rails_gems_plugins/rich_cms <br>
 "http://github.com/archan937/rich_cms":http://github.com/archan937/rich_cms
 
-Formtastic (optional)<br>
-"http://github.com/justinfrench/formtastic":http://github.com/justinfrench/formtastic
-
 SeatHolder (optional)<br>
+"http://codehero.es/jquery_libraries/seat_holder":http://codehero.es/jquery_libraries/seat_holder <br>
 "http://github.com/archan937/seat_holder":http://github.com/archan937/seat_holder
 
 h2. ToDo's
@@ -262,15 +264,15 @@ h2. ToDo's
 * Use a better implementation to tackle String interpolation (e.g. "foo #{"bar".t}") to preserve meta data
 * Most String inflection methods are also defined in rich_pluralization (keep it DRY)
 
-h2. E9s
+h2. Enrichments
 
-E9s - "http://github.com/archan937/e9s":http://github.com/archan937/e9s
+The all-in-one gem at - "http://codehero.es/rails_gems_plugins/e9s":http://codehero.es/rails_gems_plugins/e9s - "http://github.com/archan937/e9s":http://github.com/archan937/e9s
 
 h3. E9s modules
 
-* Rich-CMS - "http://github.com/archan937/rich_cms":http://github.com/archan937/rich_cms
-* Rich-i18n - "http://github.com/archan937/rich_i18n":http://github.com/archan937/rich_i18n
-* Rich-pluralization - "http://github.com/archan937/rich_pluralization":http://github.com/archan937/rich_pluralization
+* Rich-CMS <br> "http://codehero.es/rails_gems_plugins/rich_cms":http://codehero.es/rails_gems_plugins/rich_cms <br> "http://github.com/archan937/rich_cms":http://github.com/archan937/rich_cms
+* Rich-i18n <br> "http://codehero.es/rails_gems_plugins/rich_i18n":http://codehero.es/rails_gems_plugins/rich_i18n <br> "http://github.com/archan937/rich_i18n":http://github.com/archan937/rich_i18n
+* Rich-pluralization <br> "http://codehero.es/rails_gems_plugins/rich_pluralization":http://codehero.es/rails_gems_plugins/rich_pluralization <br> "http://github.com/archan937/rich_pluralization":http://github.com/archan937/rich_pluralization
 
 h2. License
 

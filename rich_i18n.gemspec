@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rich_i18n}
-  s.version = "1.2.0"
+  s.version = "1.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Paul Engel"]
-  s.date = %q{2010-10-01}
+  s.date = %q{2010-10-02}
   s.description = %q{Rich-i18n is a module of E9s (http://github.com/archan937/e9s) which enriches I18n, Formtastic, the String and Symbol classes. This simplifies internationalization of your Rails application making a Rails developers life much easier.}
   s.email = %q{paul.engel@holder.nl}
   s.extra_rdoc_files = [
@@ -42,8 +42,6 @@ Gem::Specification.new do |s|
      "lib/rich/i18n/core/array/merging.rb",
      "lib/rich/i18n/core/enriched_string.rb",
      "lib/rich/i18n/core/enumerable/methods.rb",
-     "lib/rich/i18n/core/erb.rb",
-     "lib/rich/i18n/core/erb/output.rb",
      "lib/rich/i18n/core/hash.rb",
      "lib/rich/i18n/core/nil_class.rb",
      "lib/rich/i18n/core/object.rb",
@@ -73,7 +71,7 @@ Gem::Specification.new do |s|
      "test/test_helper.rb",
      "uninstall.rb"
   ]
-  s.homepage = %q{http://github.com/archan937/rich_i18n}
+  s.homepage = %q{http://codehero.es/rails_gems_plugins/rich_i18n}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
