@@ -262,6 +262,7 @@ h2. ToDo's
 
 * Use a better implementation to tackle String interpolation (e.g. "foo #{"bar".t}") to preserve meta data
 * Most String inflection methods are also defined in rich_pluralization (keep it DRY)
+* Make Rich-i18n compatible with Rails 3
 
 h2. Enrichments
 
