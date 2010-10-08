@@ -82,7 +82,7 @@ module Rich
             
               k = "#{I18n.locale} #{key.inspect}, #{options.inspect}"
               translation = if Engine.cache_translations
-                              (@@i18n_translations[k] ||= I18n.t(key, options)).try :dup
+                              ((@@i18n_translations[I18n.locale.to_s.downcase] ||= {})[k] ||= I18n.t(key, options)).try :dup
                             else
                               I18n.t key, options
                             end

@@ -1,5 +1,9 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.2.2 (October 9, 2010)
+
+* Fixed cached translations (adding I18n.locale as criteria just now, doh!)
+
 == Version 1.2.1 (October 2, 2010)
 
 * Altered the default delimiter (separator) of Array.join
