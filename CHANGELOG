@@ -1,5 +1,14 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.2.3 (October 20, 2010)
+
+* Using SeatHolder v0.8.8 in order to tell SeatHolder not to react on focus events (yay!)
+* Corrected Rich.I18n.afterUpdate() so certain page elements will be updated again after updating translations
+* Added some manual source file requirements
+* Changed formtastic dependency to '1.0.1' and i18n to '>= 0.3.7' which fixes the gem installation error
+* Being able to edit translations within the WYSIWYG editor Cleditor (:as => :html)
+* Telling Formtastic not to escape labels when required
+
 == Version 1.2.2 (October 9, 2010)
 
 * Fixed cached translations (adding I18n.locale as criteria just now, doh!)
