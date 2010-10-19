@@ -56,19 +56,19 @@ module Rich
                   end
                 end
       
-                unless s.gsub!(/^=\s+/, "")
+                unless s.gsub!(/^=\s+/, "") || options[:as].to_s == "html"
                   s.cp_case! options[:capitalize] ? default.capitalize : default
                 end
               
                 array << " " unless array.empty?
-                array << EnrichedString.new(s, {:key => key, :value => value, :locale => I18n.locale, :derivative_key => string})
+                array << EnrichedString.new(s, options.reject{|k, v| !%w(html as).include? k.to_s}.merge({:key => key, :value => value, :locale => I18n.locale, :derivative_key => string}))
       
               end.join
             end
           
           private
 
-            RICH_I18N_OPTIONS = [:count, :pluralize, :capitalize, :translate_callback]
+            RICH_I18N_OPTIONS = [:count, :pluralize, :capitalize, :translate_callback, :html, :as]
             LOGGER_PROC = Proc.new{|translation, key, options| puts "== RICH-I18N: I18n.t #{key.inspect}, #{options.inspect}"}
           
             @@i18n_translations = {}

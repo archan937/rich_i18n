@@ -25,14 +25,19 @@ module Rich
       private
       
         def to_tag
+          tag   = :i18n
+          attrs = []
+
           keys  = [:key, :value, :locale, :derivative_key]
           data  = @meta_data.reject{|k, v| !keys.include?(k.to_sym)}
 
-          tag   = :i18n
-          attrs = data.collect{|k, v| "data-#{k}=\"#{::ERB::Util.html_escape v}\""}.join " "
-          value = @string
+          data[:editable_input_type] = @meta_data[:as] if %w(string text html).include? @meta_data[:as].to_s.downcase
+
+          attrs << @meta_data[:html].collect{|k, v|      "#{k}=\"#{::ERB::Util.html_escape v}\""}.join(" ") if @meta_data[:html]
+          attrs << data             .collect{|k, v| "data-#{k}=\"#{::ERB::Util.html_escape v}\""}.join(" ")
+          attrs << "data-i18n_translation=\"#{::ERB::Util.html_escape @string}\""
           
-          "<#{tag} #{attrs}>#{value}</#{tag}>"
+          "<#{tag} #{attrs}></#{tag}>"
         end
         
       end
