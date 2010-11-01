@@ -12,10 +12,10 @@ begin
     gemspec.homepage    = "http://codehero.es/rails_gems_plugins/rich_i18n"
     gemspec.author      = "Paul Engel"
 
-    gemspec.add_dependency "formtastic", "1.0.1"
+    gemspec.add_dependency "formtastic"
     gemspec.add_dependency "hpricot"
-    gemspec.add_dependency "i18n"      , ">= 0.3.7"
-    gemspec.add_dependency "jzip"      , ">= 1.0.10"
+    gemspec.add_dependency "i18n", ">= 0.3.7"
+    gemspec.add_dependency "jzip", ">= 1.0.10"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
