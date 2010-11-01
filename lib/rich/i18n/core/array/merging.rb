@@ -4,13 +4,13 @@ module Rich
     module Core
       module Array
         module Merging
-        
+
           def self.included(base)
             base.class_eval do
               alias_method_chain :join, :rich_i18n
             end
           end
-        
+
           def join_with_rich_i18n(sep = $,)
             if size == 1 && first.is_a?(EnrichedString)
               first
@@ -21,7 +21,7 @@ module Rich
               result
             end
           end
-        
+
         end
       end
     end

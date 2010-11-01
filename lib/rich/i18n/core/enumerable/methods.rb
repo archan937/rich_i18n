@@ -4,11 +4,11 @@ module Rich
     module Core
       module Enumerable
         module Methods
-        
+
           def filled?
             !empty?
           end
-                
+
         end
       end
     end

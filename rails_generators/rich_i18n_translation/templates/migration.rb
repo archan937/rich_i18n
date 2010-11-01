@@ -7,7 +7,7 @@ class <%= migration_class_name %> < ActiveRecord::Migration
       t.boolean :is_proc, :default => false
       t.timestamps
     end
-    
+
     add_index :<%= table_name %>, :locale
     add_index :<%= table_name %>, :key
   end

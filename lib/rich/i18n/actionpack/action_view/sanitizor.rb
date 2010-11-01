@@ -5,12 +5,12 @@ module Rich
       module ActionView
         module Sanitizor
           extend self
-    
+
           require "hpricot"
-    
+
           def sanitize_html(html)
             return html unless (html || "").include?("<i18n ")
-      
+
             doc = Hpricot html
 
             (doc/"head i18n").each do |i18n|
@@ -36,9 +36,9 @@ module Rich
           rescue
             html.gsub(/(\<i18n[^\>]+\>)|(\<\/i18n\>)/, "")
           end
-    
+
         private
-    
+
           def sanitize_input(input)
             %w(value seatholder).each do |input_attr|
               next unless input.attributes[input_attr].include?("<i18n ")
@@ -47,14 +47,14 @@ module Rich
               i18n.raw_attributes.each do |key, value|
                 input.attributes[key] = value unless key == "data-i18n_translation"
               end
-              
+
               input.attributes[input_attr] = CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
               input.attributes["class"] = ["i18n", input.attributes["class"]].uniq.join(" ").strip
             end
-        
+
             input
           end
-      
+
         end
       end
     end

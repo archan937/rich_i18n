@@ -11,21 +11,21 @@ module Rich
               include Setup
               I18n.locale = Engine.init(self)
             end
-      
+
             test "dutch_translations" do
               assert_equal "huis"  , "house".t
               assert_equal "straat", "street".t
               assert_equal "vraag" , "question".t
               assert_equal "vraag" , "word.question".t
             end
-      
+
             test "dutch_cased_translations" do
               assert_equal "meer"   , "more".t
               assert_equal "Huis"   , "House".t
               # assert_equal "Straten", "Streets".t
               # assert_equal "VRAGEN" , "QUESTIONS".t
             end
-      
+
             test "dutch_combined_translations" do
               assert_equal "vraag & antwoord"   , "question & answer".t
               assert_equal "Vraag & antwoord"   , "Question & answer".t
@@ -39,7 +39,7 @@ module Rich
               # assert_equal "Vragen & Antwoorden", "Questions & Answers".t
             end
           end
-        
+
         end
       end
     end

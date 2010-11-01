@@ -3,7 +3,7 @@ module ActionController
   class Base
 
     around_filter :prepare_rich_i18n
-    
+
     def prepare_rich_i18n
       String.clear_translations
       ::Rich::I18n::Engine.current_controller = self
@@ -11,7 +11,7 @@ module ActionController
     ensure
       ::Rich::I18n::Engine.current_controller = nil
     end
-    
+
     view_path = File.join File.dirname(__FILE__), "..", "..", "..", "..", "app", "views"
     if respond_to? :append_view_path
       self.append_view_path view_path
