@@ -10,14 +10,14 @@ module Rich
             setup do
               include Setup
             end
-          
+
             # test "t" do
             #   assert true
             # end
           end
-        
+
         end
-      end 
+      end
     end
   end
 end

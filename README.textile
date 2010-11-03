@@ -54,7 +54,7 @@ h3. Using Rich-i18n as plugin
 Install the Rich-i18n plugin:
 
 <pre>
-  ./script/plugin install git://github.com/archan937/rich_i18n.git 
+  ./script/plugin install git://github.com/archan937/rich_i18n.git
 </pre>
 
 Install i18n if you haven't already:
@@ -109,7 +109,7 @@ At default, I18n uses @I18n::Backend::Simple@ of which translations are stored w
 <pre>
 ---
 nl:
-  
+
   word:
     "yes":   ja
     "no":    nee
@@ -203,32 +203,32 @@ You can translate @labels@ and @seatholders@ (placeholders :D) within Formtastic
 <pre>
 ---
 nl:
-  
+
   word:
     password:       wachtwoord
-  
+
   label:
     user_name:      gebruikersnaam
     content:        bericht
-    
+
     Question:
       content:      jouw vraag
-    
+
     Answer:
       content:      jouw antwoord
-    
+
     (search_form)
       criteria:     uw zoekcriteria
-  
+
   seatholder:
     email_address:  uw.naam@een.website.nl
-    
+
     Question:
       content:      Hoeveel uren zitten in een dag?
-    
+
     Answer:
       content:      24 uur
-    
+
     (search_form)
       criteria:     '&Voorbeeld'
 </pre>
