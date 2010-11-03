@@ -6,7 +6,7 @@ module Rich
         
         delegate :empty?, :blank?, :to_json, :+, :<<, :concat, :to => :@string
         
-        attr_reader :string
+        attr_reader :string, :meta_data
       
         def initialize(string = "", meta_data = nil)
           @string    = string
