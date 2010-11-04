@@ -29,7 +29,7 @@ module Rich
                 key.downcase! unless string.match(/^(label|seatholder)\./)
 
                 options[:pluralize]            = "".respond_to?(:pl) && (options[:pluralize].nil? || options[:pluralize])
-                options[:translate_callback] ||= LOGGER_PROC if RAILS_ENV == "development"
+                options[:translate_callback] ||= LOGGER_PROC if Rails.env.development?
 
                 if options.include? :default
                   options[:default] = [options[:default]].flatten << default.humanize
