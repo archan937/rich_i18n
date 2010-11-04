@@ -7,7 +7,7 @@ module Rich
 
         attr_accessor :enable_enriched_output, :cache_translations
 
-        def init(test_class = nil)
+        def init(test_locale = nil)
           @enable_enriched_output = true if @enable_enriched_output.nil?
           @cache_translations     = true if @cache_translations    .nil?
 
@@ -21,7 +21,7 @@ module Rich
           procedure = proc {
             ::Jzip::Engine.add_template_location({File.expand_path("../../../../assets/jzip", __FILE__) => File.join(Rails.root, "public", "javascripts")})
             ::Formtastic::SemanticFormBuilder.escape_html_entities_in_hints_and_labels = false if ::Formtastic::SemanticFormBuilder.respond_to?(:escape_html_entities_in_hints_and_labels)
-            load_i18n test_class
+            load_i18n test_locale
           }
 
           if Rails::VERSION::MAJOR >= 3
@@ -31,6 +31,8 @@ module Rich
           else
             procedure.call
           end
+
+          test_locale
         end
 
         def current_controller=(current_controller)
@@ -38,18 +40,13 @@ module Rich
           @can_enrich_output  = nil
         end
 
-        def load_i18n(test_class)
-          if test_class
-            test_locale = test_class.name.match(/(Rich\:\:I18n\:\:Test\:\:Locales\:\:)(\w+)/).captures[1].downcase.to_sym
-
+        def load_i18n(test_locale)
+          if test_locale
             I18n.load_path  =    [File.join(File.dirname(__FILE__), "..", "..", "..", "locales", "#{test_locale}.yml")]
           else
             I18n.load_path += Dir[File.join(File.dirname(__FILE__), "..", "..", "..", "locales", "*.yml")]
           end
-
           I18n.backend.reload!
-
-          test_locale
         end
 
         def enable_i18n_cms(enriched_output_criteria = :current_rich_cms_admin, assign_i18n_backend = true)
