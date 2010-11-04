@@ -3,7 +3,7 @@ module ActionView
   class Base
 
     def rich_i18n
-      render :file => File.join(File.dirname(__FILE__), "..", "..", "..", "..", "app", "views", "rich_i18n.html.erb")
+      render :file => File.expand_path("../../../../../../app/views/rich_i18n.html.erb", __FILE__)
     end
 
     def render_with_rich_i18n(*args, &block)
