@@ -37,7 +37,7 @@ module Rich
           attrs << data             .collect{|k, v| "data-#{k}=\"#{::ERB::Util.html_escape v}\""}.join(" ")
           attrs << "data-i18n_translation=\"#{::ERB::Util.html_escape @string}\""
 
-          "<#{tag} #{attrs}></#{tag}>"
+          "<#{tag} #{attrs.join(" ")}></#{tag}>"
         end
 
       end
