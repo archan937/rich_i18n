@@ -8,7 +8,7 @@ unless defined?(Rich::I18n::CONTROLLER_HOOKED)
   }
 
   if Rails::VERSION::MAJOR >= 3
-    Rich::Cms::Engine.config.to_prepare do
+    ActionController::Base.config.to_prepare do
       procedure.call
     end
   else
