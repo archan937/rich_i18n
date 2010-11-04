@@ -35,49 +35,45 @@ h3. More available features when using E9s (enrichments)
 
 h2. Installation
 
-h3. Using Rich-i18n as gem
+h3. Using Rich-i18n as gem in Rails 3
 
-Install the Rich-i18n gem:
+Add Rich-i18n in @Gemfile@ as a gem dependency:
 
 <pre>
-  sudo gem install rich_i18n
+  gem "rich_i18n"
 </pre>
 
-Add rich_i18n in environment.rb as a gem dependency:
+Run the following in your console to install with Bundler:
+
+<pre>
+  bundle install
+</pre>
+
+h3. Using Rich-i18n as gem in Rails 2
+
+Add Rich-i18n in @environment.rb@ as a gem dependency:
 
 <pre>
   config.gem "rich_i18n"
 </pre>
 
-h3. Using Rich-i18n as plugin
-
-Install the Rich-i18n plugin:
+Run the following in your console:
 
 <pre>
-  ./script/plugin install git://github.com/archan937/rich_i18n.git
+  sudo rake gems:install
 </pre>
 
-Install i18n if you haven't already:
+h3. Using Rich-i18n as plugin in Rails 3
 
 <pre>
-  sudo gem install i18n
+  rails plugin install git://github.com/archan937/rich_i18n.git
 </pre>
 
-h3. Optional
-
-You will have to install the @Formtastic@ plugin when translating @labels@ and @seatholders@ with *Rich-i18n as plugin*:
+h3. Using Rich-i18n as plugin in Rails 2
 
 <pre>
-  ./script/plugin install git://github.com/justinfrench/formtastic.git
+  script/plugin install git://github.com/archan937/rich_i18n.git
 </pre>
-
-When wanting to use @seatholders@, please include @seat_holder.js@ in your template:
-
-<pre>
-  <script src="path/to/seat_holder.js" type="text/javascript"></script>
-</pre>
-
-*Note*: please visit "http://github.com/archan937/seat_holder":http://github.com/archan937/seat_holder for more information about SeatHolder.
 
 h3. Testing Rich-i18n out-of-the-box
 
@@ -94,6 +90,38 @@ Start translating in Dutch:
   => :nl
   >> "Male / Female".t
   => "Man / Vrouw"
+</pre>
+
+h2. Use the provided Rails generators
+
+Rich-i18n requires the following entity:
+
+* An @ActiveRecord@ model used for translations storage
+
+Fortunately, Rich-i18n is provided with a Rails generator with which you can generate the entity.
+
+h4. In Rails 3
+
+Run the following in your console:
+
+<pre>
+  rails g rich:translation -m
+</pre>
+
+*Note*: At default, it will create the @Translation@ class and @CreateTranslations@ migration. You can alter the class names with the following:
+
+<pre>
+  rails g rich:translation CodeHeroes::Translation -m
+</pre>
+
+*Note*: The generator has the @-m@ or @--migrate@ option which runs @rake db:migrate@ after creating the files.
+
+h4. In Rails 2
+
+Run the following in your console:
+
+<pre>
+  script/generate rich_i18n_translation -m
 </pre>
 
 h2. Usage
