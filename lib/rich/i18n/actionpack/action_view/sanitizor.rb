@@ -14,7 +14,7 @@ module Rich
             doc = Hpricot html
 
             (doc/"head i18n,select i18n").each do |i18n|
-              i18n.swap CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
+              i18n.swap strip_tags(i18n.raw_attributes["data-i18n_translation"])
             end
 
             (doc/"input,textarea").each do |input|
@@ -22,7 +22,7 @@ module Rich
             end
 
             (doc/"i18n").each do |i18n|
-              elem = Hpricot::Elem.new i18n.raw_attributes["data-editable_input_type"] == "html" ? "div" : "span",
+              elem = Hpricot::Elem.new i18n.raw_attributes["data-i18n_tag"] || (i18n.raw_attributes["data-editable_input_type"] == "html" ? "div" : "span"),
                                        i18n.raw_attributes.reject{|k, v| k == "data-i18n_translation"}.merge({:class => "i18n"})
               elem.inner_html = CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
               i18n.swap elem.to_html
@@ -47,8 +47,6 @@ module Rich
               input.attributes[input_attr] = CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
               input.attributes["class"] = ["i18n", input.attributes["class"]].uniq.join(" ").strip
             end
-
-            input
           end
 
         end
