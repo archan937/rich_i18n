@@ -13,7 +13,7 @@ module Rich
 
             doc = Hpricot html
 
-            (doc/"head i18n").each do |i18n|
+            (doc/"head i18n,select i18n").each do |i18n|
               i18n.swap CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
             end
 
