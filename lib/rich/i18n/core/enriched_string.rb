@@ -8,17 +8,17 @@ module Rich
 
         def initialize(string = "", meta_data = nil)
           super(string)
-          @meta_data = meta_data || (string.meta_data.dup unless (string.meta_data.nil? rescue true)) || {}
+          @meta_data = HashWithIndifferentAccess.new meta_data || (string.meta_data.dup unless (string.meta_data.nil? rescue true)) || {}
         end
 
         def to_es
-          (@meta_data.filled? && Engine.can_enrich_output?) ? to_tag : self
+          (@meta_data.filled? && Engine.can_enrich_output?) ? to_enriched_tag : to_tag
         end
         alias_method :to_s, :to_es
 
       private
 
-        def to_tag
+        def to_enriched_tag
           tag   = :i18n
           attrs = []
 
