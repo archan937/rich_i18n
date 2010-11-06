@@ -17,19 +17,15 @@ module Rich
               i18n.swap CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
             end
 
+            (doc/"input,textarea").each do |input|
+              sanitize_input(input)
+            end
+
             (doc/"i18n").each do |i18n|
               elem = Hpricot::Elem.new i18n.raw_attributes["data-editable_input_type"] == "html" ? "div" : "span",
                                        i18n.raw_attributes.reject{|k, v| k == "data-i18n_translation"}.merge({:class => "i18n"})
               elem.inner_html = CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
               i18n.swap elem.to_html
-            end
-
-            (doc/"input").each do |input|
-              sanitize_input(input)
-            end
-
-            (doc/"textarea").each do |input|
-              sanitize_input(input)
             end
 
             doc.to_html
