@@ -61,14 +61,16 @@ module Rich
                 end
 
                 array << " " unless array.empty?
-                array << EnrichedString.new(s, options.reject{|k, v| !%w(html as).include? k.to_s}.merge({:key => key, :value => value, :locale => I18n.locale, :derivative_key => string}))
+                array << EnrichedString.new(s, options.reject{|k, v| !RICH_CMS_OPTIONS.include? k.to_s}.merge({:key => key, :value => value, :locale => I18n.locale, :derivative_key => string}))
 
               end.join
             end
 
           private
 
-            RICH_I18N_OPTIONS = [:count, :pluralize, :capitalize, :translate_callback, :html, :as]
+            RICH_I18N_OPTIONS = %w(count pluralize capitalize translate_callback)
+            RICH_CMS_OPTIONS  = %w(tag html as)
+
             LOGGER_PROC = Proc.new{|translation, key, options| puts "== RICH-I18N: I18n.t #{key.inspect}, #{options.inspect}"}
 
             @@i18n_translations = {}
@@ -76,7 +78,7 @@ module Rich
             def i18n_t(key, opts = {})
               options = opts.inject({}) do |hash, (k, v)|
                           # FIXME: this code is to handle interpolated translations... however, this needs to be refactored
-                          hash[k] = v.is_a?(String) && v.include?("<i18n") ? v.gsub(/(\<i18n[^\>]+\>)|(\<\/i18n\>)/, "") : v unless RICH_I18N_OPTIONS.include?(k)
+                          hash[k] = v.is_a?(String) && v.include?("<i18n") ? v.gsub(/(\<i18n[^\>]+\>)|(\<\/i18n\>)/, "") : v unless (RICH_I18N_OPTIONS + RICH_CMS_OPTIONS).include?(k.to_s)
                           hash
                         end
 
