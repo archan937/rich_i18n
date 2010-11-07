@@ -5,7 +5,7 @@ module Rich
 
       class << self
 
-        attr_accessor :enable_enriched_output, :cache_translations
+        attr_accessor :logger, :enable_enriched_output, :cache_translations
 
         def init(test_locale = nil)
           @enable_enriched_output = true if @enable_enriched_output.nil?
@@ -22,6 +22,7 @@ module Rich
             ::Jzip::Engine.add_template_location({File.expand_path("../../../../assets/jzip", __FILE__) => File.join(Rails.root, "public", "javascripts")})
             ::Formtastic::SemanticFormBuilder.escape_html_entities_in_hints_and_labels = false if ::Formtastic::SemanticFormBuilder.respond_to?(:escape_html_entities_in_hints_and_labels)
             load_i18n test_locale
+            Rich::I18n::Engine.logger = Rails.logger
           }
 
           if Rails::VERSION::MAJOR >= 3
