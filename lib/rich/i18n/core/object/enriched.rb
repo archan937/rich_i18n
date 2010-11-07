@@ -3,10 +3,10 @@ module Rich
   module I18n
     module Core
       module Object
-        module EnrichedString
+        module Enriched
 
-          def to_es
-            to_s
+          def enriched?
+            false
           end
 
         end

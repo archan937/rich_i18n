@@ -1,6 +1,6 @@
 
-require "rich/i18n/core/object/enriched_string"
+require "rich/i18n/core/object/enriched"
 
 class Object
-  include Rich::I18n::Core::Object::EnrichedString
+  include Rich::I18n::Core::Object::Enriched
 end
