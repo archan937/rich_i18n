@@ -12,13 +12,11 @@ module Rich
           end
 
           def join_with_rich_i18n(sep = $,)
-            if size == 1 && first.is_a?(EnrichedString)
+            if size == 1 && first.enriched?
               first
             else
-              merged_strings = dup
               result = join_without_rich_i18n(sep)
-              result.merged_strings = merged_strings
-              result
+              any?(&:enriched?) ? EnrichedString.new(result, nil, dup) : result
             end
           end
 

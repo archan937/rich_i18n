@@ -22,7 +22,7 @@ module Rich
             keys.unshift :"label.forms.(#{@options[:name]}).#{object}.#{method}"
           end
 
-          options[:label] = keys.shift.t(:default => keys, :capitalize => true).to_es
+          options[:label] = keys.shift.t(:default => keys, :capitalize => true).to_s
         end
 
         unless options.include?(:seatholder)
@@ -34,7 +34,7 @@ module Rich
           end
 
           seatholder = keys.shift.t :default => keys, :capitalize => true
-          options[:seatholder] = seatholder.to_es unless seatholder.empty?
+          options[:seatholder] = seatholder.to_s unless seatholder.empty?
         end
 
         (options[:input_html] ||= {}).store :seatholder, options.delete(:seatholder) unless @object && @object.respond_to?(:errors) && !@object.errors[method.to_sym].blank?
