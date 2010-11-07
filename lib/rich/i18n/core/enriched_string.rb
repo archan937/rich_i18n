@@ -41,7 +41,7 @@ module Rich
       protected
 
         def to_tag
-          (@meta_data.filled? && Engine.can_enrich_output?) ? to_enriched_tag : to_html
+          (!@meta_data.empty? && Engine.can_enrich_output?) ? to_enriched_tag : to_html
         end
 
         def to_enriched_tag
