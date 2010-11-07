@@ -24,7 +24,7 @@ module Rich
       end
 
       def generate_model
-        invoke "active_record:model", [model_file_name], :migration => false
+        template "model.rb", "app/models/#{model_file_name}.rb"
       end
 
       def generate_migration
