@@ -3,11 +3,7 @@ module Rich
   module I18n
     module Core
       module Object
-        module Output
-
-          def to_output
-            to_es
-          end
+        module EnrichedString
 
           def to_es
             to_s
