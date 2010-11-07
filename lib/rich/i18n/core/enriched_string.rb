@@ -35,7 +35,7 @@ module Rich
         end
 
         def to_s
-          (@merged_strings || [self]).collect(&:to_tag).join ""
+          (@merged_strings || [self]).collect(&:to_tag).join("").html_safe
         end
 
       protected
@@ -58,12 +58,12 @@ module Rich
           attrs << "data-i18n_translation='#{::ERB::Util.html_escape to_str}'"
           attrs << "data-i18n_tag='#{@meta_data[:tag]}'" if @meta_data[:tag]
 
-          "<#{tag} #{attrs.join(" ")}></#{tag}>".html_safe
+          "<#{tag} #{attrs.join(" ")}></#{tag}>"
         end
 
         def to_html
           tag = %w(text html).include?(editable_input_type) ? :div : :span
-          tag ? "<#{tag}>#{to_str}</#{tag}>".html_safe : to_str
+          tag ? "<#{tag}>#{to_str}</#{tag}>" : to_str
         end
 
       private
