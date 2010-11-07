@@ -49,3 +49,5 @@ module Rich
     end
   end
 end
+
+Formtastic::SemanticFormBuilder.send :include, Rich::I18n::Formtastic
