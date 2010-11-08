@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rich_i18n}
-  s.version = "1.3.0"
+  s.version = "1.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Paul Engel"]
@@ -31,10 +31,10 @@ Gem::Specification.new do |s|
      "assets/jzip/rich_i18n.jz",
      "init.rb",
      "install.rb",
-     "lib/generators/rich.rb",
      "lib/generators/rich/translation/templates/migration.rb",
      "lib/generators/rich/translation/templates/model.rb",
      "lib/generators/rich/translation/translation_generator.rb",
+     "lib/generators/rich_i18n.rb",
      "lib/rich/i18n.rb",
      "lib/rich/i18n/actionpack.rb",
      "lib/rich/i18n/actionpack/action_controller/base.rb",
