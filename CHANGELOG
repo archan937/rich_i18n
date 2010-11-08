@@ -1,5 +1,17 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.3.0 (November 8, 2010)
+
+* Made Rich-i18n Rails 2 and 3 compatible (woot!)
+* Tackled string concatenation, array joining and Rails 3 html escaping to render enriched strings correctly
+* Fixed the gem dependencies to avoid conflicts
+* Added a built-in Rails 2 and Rails 3 for testing
+* Being able to run 'rake', 'rake test', 'rake test:rails2' and 'rake test:rails3' for testing within the gem directory
+* Perfected the Rails generators (for both Rails 2 and 3)
+* Added Rich::I18n::Engine.logger for logging (you can set this to nil to disable logging)
+* Improved the auto-determination of the tag used for rendering translations
+* Removed the filled? method
+
 == Version 1.2.3 (October 20, 2010)
 
 * Using SeatHolder v0.8.8 in order to tell SeatHolder not to react on focus events (yay!)
