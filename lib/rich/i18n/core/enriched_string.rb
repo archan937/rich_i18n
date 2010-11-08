@@ -3,12 +3,12 @@ module Rich
   module I18n
     module Core
 
-      class EnrichedString < ::String
+      class EnrichedString
         attr_reader :meta_data, :merged_strings
 
         def initialize(string = "", meta = nil, merged = nil)
-          super string
-          @meta_data      = HashWithIndifferentAccess.new meta || (string.meta_data.dup if string.enriched?) || {}
+          @string         = string.dup
+          @meta_data      = HashWithIndifferentAccess.new meta.try(:dup) || (string.meta_data.dup if string.enriched?) || {}
           @merged_strings = merged
         end
 
@@ -20,22 +20,32 @@ module Rich
           true
         end
 
-        def concat_with_rich_i18n(other)
-         (@merged_strings ||= [EnrichedString.new to_str, @meta_data]) << other
+        def concat(other)
+         (@merged_strings ||= [EnrichedString.new @string, @meta_data]) << other
           @meta_data = nil
-          concat_without_rich_i18n(other)
+          @string.concat other
+          self
         end
-
-        alias_method_chain :concat, :rich_i18n
-        undef_method :<<
-        alias_method :<<, :concat_with_rich_i18n
+        alias_method :<<, :concat
 
         def +(other)
           dup.concat(other)
         end
 
+        def to_str
+          @string
+        end
+
         def to_s
           (@merged_strings || [self]).collect(&:to_tag).join("").html_safe
+        end
+
+        def method_missing(method, *args)
+          if @string.respond_to? method
+            @string.send method
+          else
+            super
+          end
         end
 
       protected
@@ -69,7 +79,7 @@ module Rich
       private
 
         def editable_input_type
-          @meta_data[:as] if @meta_data && %w(string text html).include?(@meta_data[:as])
+          @meta_data[:as] if @meta_data && %w(string text html).include?(@meta_data[:as].try(:to_s).try(:downcase))
         end
 
       end
