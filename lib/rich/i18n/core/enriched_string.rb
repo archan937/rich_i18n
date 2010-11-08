@@ -72,7 +72,7 @@ module Rich
         end
 
         def to_html
-          tag = %w(text html).include?(editable_input_type) ? :div : :span
+          tag = (@meta_data[:tag] if @meta_data) || (:div if %w(text html).include?(editable_input_type))
           tag ? "<#{tag}>#{to_str}</#{tag}>" : to_str
         end
 
