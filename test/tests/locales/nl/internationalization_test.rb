@@ -5,7 +5,7 @@ module Locales
 
     class InternationalizationTest < ActiveSupport::TestCase
       setup do
-        I18n.locale = Engine.init :nl
+        I18n.locale = Rich::I18n::Engine.init :nl
       end
 
       test "current locale" do
