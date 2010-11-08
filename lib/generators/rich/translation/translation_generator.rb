@@ -1,12 +1,12 @@
-require "generators/rich"
+require "generators/rich_i18n"
 
 module Rich
   module Generators
 
-    class TranslationGenerator < Base
+    class TranslationGenerator < ::RichI18n::Generators::Base
 
       include Rails::Generators::Migration
-      include Rich::Generators::Migration
+      include RichI18n::Generators::Migration
 
       desc         "Creates Rich-i18n translation model and migration."
       argument     :model_name, :type => :string , :default => "translation"
@@ -16,7 +16,7 @@ module Rich
         filename = "config/initializers/enrichments.rb"
         line     = "\nRich::I18n::Engine.enable_i18n_cms"
 
-        return if File.open(filename, "a+").readlines.include? line.strip
+        return if File.open(filename).readlines.collect(&:strip).include? line.strip
 
         File.open(filename, "a+") do |file|
           file << line
