@@ -8,5 +8,5 @@ class String
   include Rich::I18n::Core::String::Inflections
   include Rich::I18n::Core::String::Internationalization
   include Rich::I18n::Core::String::Enriched
-  include Rich::I18n::Core::String::HtmlSafe unless String.new.respond_to? :html_safe
+  include Rich::I18n::Core::String::HtmlSafe
 end
