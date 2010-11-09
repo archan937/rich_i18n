@@ -14,9 +14,12 @@ class RichI18nTranslationGenerator < Rails::Generator::Base
   end
 
   def after_generate
-    File.open(destination_path("config/initializers/enrichments.rb"), "a+") do |file|
-      file << "\nRich::I18n::Engine.enable_i18n_cms"
-    end
+    filename = destination_path("config/initializers/enrichments.rb")
+    line     = "\nRich::I18n::Engine.enable_i18n_cms"
+
+    File.open(filename, "a+") do |file|
+      file << line
+    end unless File.open(filename).readlines.collect(&:strip).include? line.strip
 
     system "rake db:migrate" if options[:migrate]
   end

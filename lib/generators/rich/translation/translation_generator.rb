@@ -16,6 +16,7 @@ module Rich
         filename = "config/initializers/enrichments.rb"
         line     = "\nRich::I18n::Engine.enable_i18n_cms"
 
+        create_file filename unless File.exists?(filename)
         return if File.open(filename).readlines.collect(&:strip).include? line.strip
 
         File.open(filename, "a+") do |file|
