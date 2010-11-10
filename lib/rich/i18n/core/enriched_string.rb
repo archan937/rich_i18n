@@ -4,7 +4,9 @@ module Rich
     module Core
 
       class EnrichedString
+
         attr_reader :meta_data, :merged_strings
+        delegate :as_json, :to_json, :to_str, :to => :@string
 
         def initialize(string = "", meta = nil, merged = nil)
           @string         = string.dup
@@ -30,10 +32,6 @@ module Rich
 
         def +(other)
           dup.concat(other)
-        end
-
-        def to_str
-          @string
         end
 
         def to_s
