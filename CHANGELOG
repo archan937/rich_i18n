@@ -1,5 +1,10 @@
 = Rich-i18n CHANGELOG
 
+== Version 1.3.3 (November 10, 2010)
+
+* Fixed the disappearing translations after updating them in the front-end by delegating :as_json to @string
+* Being able to preserve the :capitalize option of translations which fixes the downcased translation after updating a Formtastic label
+
 == Version 1.3.2 (November 9, 2010)
 
 * Fixed the Rails generators once and for all
