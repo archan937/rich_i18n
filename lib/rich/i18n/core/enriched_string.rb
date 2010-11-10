@@ -56,7 +56,7 @@ module Rich
           tag   = :i18n
           attrs = []
 
-          keys  = [:key, :value, :locale, :derivative_key]
+          keys  = [:key, :value, :locale, :derivative_key, :capitalize]
           data  = @meta_data.reject{|k, v| !keys.include?(k.to_sym)}
 
           data[:editable_input_type] = editable_input_type

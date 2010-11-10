@@ -69,7 +69,7 @@ module Rich
           private
 
             RICH_I18N_OPTIONS = %w(count pluralize capitalize translate_callback)
-            RICH_CMS_OPTIONS  = %w(tag html as)
+            RICH_CMS_OPTIONS  = %w(tag html as capitalize)
 
             LOGGER_PROC = Proc.new{|translation, key, options| Rich::I18n::Engine.logger.try :info, "== RICH-I18N: I18n.t #{key.inspect}, #{options.inspect}"}
 
