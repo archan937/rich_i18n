@@ -261,6 +261,10 @@ nl:
       criteria:     '&Voorbeeld'
 </pre>
 
+h2. Disabling Rich-i18n logging
+
+Just like @ActiveRecord::Base.logger@ and @ActionController::Base.logger@, you can set @Rich::I18n::Engine.logger@ to @nil@ in order to disable logging messages printed by Rich-i18n.
+
 h2. Contact me
 
 For support, remarks and requests please mail me at "paul.engel@holder.nl":mailto:paul.engel@holder.nl.
