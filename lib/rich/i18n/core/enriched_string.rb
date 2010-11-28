@@ -6,7 +6,7 @@ module Rich
       class EnrichedString
 
         attr_reader :meta_data, :merged_strings
-        delegate :as_json, :to_json, :to_str, :to => :@string
+        delegate :inspect, :as_json, :to_json, :to_str, :to => :@string
 
         def initialize(string = "", meta = nil, merged = nil)
           @string         = string.dup
