@@ -4,9 +4,11 @@ module Core
   module Array
 
     class MergingTest < ActiveSupport::TestCase
-      test "merged strings" do
-        # assert_equal ["hallo", " ", "world"], [                   "hallo"                    , " ", "world"].join.merged_strings
-        # assert_equal ["hallo", " ", "world"], [EnrichedString.new("hallo", {:key => "hello"}), " ", "world"].join.merged_strings
+      context "An array with only an enriched string" do
+        should "return the enriched string" do
+          # assert_equal ["hallo", " ", "world"], [                   "hallo"                    , " ", "world"].join.merged_strings
+          # assert_equal ["hallo", " ", "world"], [EnrichedString.new("hallo", {:key => "hello"}), " ", "world"].join.merged_strings
+        end
       end
     end
 
