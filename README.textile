@@ -300,7 +300,6 @@ SeatHolder (optional)<br>
 
 h2. ToDo's
 
-* Handle the click on inputs with seatholders better
 * Use a better implementation to tackle String interpolation (e.g. "foo #{"bar".t}") to preserve meta data
 * Most String inflection methods are also defined in rich_pluralization (keep it DRY)
 
