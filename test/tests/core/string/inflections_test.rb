@@ -2,8 +2,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "..", "te
 
 module Core
   module String
-
     class InflectionsTest < ActiveSupport::TestCase
+
       test "upcase_first" do
         assert_equal      "",      "".upcase_first
         assert_equal "Value", "value".upcase_first
@@ -26,7 +26,7 @@ module Core
         assert_equal   nil,  "Key".singularize!
         assert_equal "KEY", "KEYS".singularize!
       end
-    end
 
+    end
   end
 end
