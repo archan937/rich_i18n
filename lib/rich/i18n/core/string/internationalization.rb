@@ -41,7 +41,7 @@ module Rich
                   value = s.dup
 
                   if translating_word
-                    unless (translated = !s.empty?) or !"".respond_to?(:pl)
+                    unless (translated = !s.empty?) || !"".respond_to?(:pl)
                       key.singularize!
                       s = i18n_t key, options.merge({:default => ""})
                       value = s.dup
@@ -51,7 +51,7 @@ module Rich
                       s = default.humanize
                       value = s.dup
                     else
-                      s = s.pl(options[:count]) unless !options[:pluralize] or (options[:count].nil? and default.dup.pluralize!)
+                      s = s.pl(options[:count]) unless !options[:pluralize] || (options[:count].nil? && default.dup.pluralize!)
                     end
                   end
                 end
