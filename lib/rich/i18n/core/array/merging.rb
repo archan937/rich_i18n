@@ -15,7 +15,10 @@ module Rich
             if size == 1 && first.enriched?
               first
             else
-              result = join_without_rich_i18n(sep)
+              result = ""
+              each_with_index do |x, i|
+                result = "#{result}#{sep unless i.zero?}#{x.enriched? ? x.to_str : x}"
+              end
               any?(&:enriched?) ? EnrichedString.new(result, nil, dup) : result
             end
           end
