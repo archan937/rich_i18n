@@ -35,7 +35,7 @@ module Rich
         end
 
         def to_s
-          (@merged_strings || [self]).collect(&:to_tag).join("").html_safe
+          (@merged_strings || [self]).collect{|x| x.enriched? ? x.to_tag : x}.join("").html_safe
         end
 
         def method_missing(method, *args)
