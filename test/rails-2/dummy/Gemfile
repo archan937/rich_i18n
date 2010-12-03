@@ -4,4 +4,5 @@ gem "rails", "2.3.10"
 gem "sqlite3-ruby", :require => "sqlite3"
 gem "shoulda"
 
-gem "rich_i18n", :path => File.join(File.dirname(__FILE__), "..", "..", "..")
+gem "rich_i18n"         , :path => File.join(File.dirname(__FILE__), "..", "..", "..")
+gem "rich_pluralization", :path => File.join(File.dirname(__FILE__), "..", "..", "..", "..", "rich_pluralization")
