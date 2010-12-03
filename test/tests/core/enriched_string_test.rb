@@ -18,7 +18,14 @@ module Core
         end
 
         should "render meta data attributes" do
-          # assert_equal "<i18n data-value=\"meer\" data-key=\"word.more\" data-derivative_key=\"More\" data-locale=\"nl\" data-i18n_translation=\"Meer\"></i18n>", "More".t.to_output
+          tag = Hpricot "More".t.to_s
+
+          assert_equal 1, tag.children.size
+
+          element = tag.children[0]
+          assert_equal Hpricot::Elem, element.class
+          assert_equal({:"data-locale" => "nl", :"data-editable_input_type" => "", :"data-i18n_translation" => "Meer", :"data-value" => "meer", :"data-derivative_key" => "More", :"data-key" => "word.more"}.stringify_keys,
+                       element.raw_attributes)
         end
       end
     end
