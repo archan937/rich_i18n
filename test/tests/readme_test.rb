@@ -6,7 +6,7 @@ class ReadmeTest < ActiveSupport::TestCase
 
   context "The Dutch README examples" do
     setup do
-      I18n.locale = Engine.init :nl
+      I18n.locale = ::Rich::I18n::Engine.init :nl
     end
 
     should "have the correct locale set" do
