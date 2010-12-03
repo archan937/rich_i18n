@@ -26,6 +26,7 @@ module Rich
                 default          = key.split(".").last
                 translating_word = key.starts_with?("word.")
 
+                @@used_i18n_keys.clear
                 key.downcase! unless string.match(/^(label|seatholder)\./)
 
                 options[:pluralize]            = "".respond_to?(:pl) && (options[:pluralize].nil? || options[:pluralize])
@@ -61,7 +62,12 @@ module Rich
                 end
 
                 array << " " unless array.empty?
-                array << EnrichedString.new(s, options.reject{|k, v| !RICH_CMS_OPTIONS.include? k.to_s}.merge({:key => key, :value => value, :locale => I18n.locale, :derivative_key => string}))
+                array << EnrichedString.new(s, options.reject{|k, v| !RICH_CMS_OPTIONS.include? k.to_s}.merge({
+                  :key            => @@used_i18n_keys.size > 1 ? @@used_i18n_keys.join(", ") : key,
+                  :value          => value,
+                  :locale         => I18n.locale,
+                  :derivative_key => string
+                }))
 
               end.join
             end
@@ -73,6 +79,7 @@ module Rich
 
             LOGGER_PROC = Proc.new{|translation, key, options| Rich::I18n::Engine.logger.try :info, "== RICH-I18N: I18n.t #{key.inspect}, #{options.inspect}"}
 
+            @@used_i18n_keys    = []
             @@i18n_translations = {}
 
             def i18n_t(key, opts = {})
@@ -88,7 +95,9 @@ module Rich
                             else
                               I18n.t key, options
                             end
+
               opts[:translate_callback].try :call, translation, key, options
+              @@used_i18n_keys.unshift key.dup
 
               translation
             end

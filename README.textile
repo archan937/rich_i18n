@@ -191,9 +191,9 @@ Keep in mind that combined translations are possible and fortunately EnrichedStr
   >> "More users".t.meta_data
   => nil
   >> "More users".t.merged_strings.first.meta_data
-  => {:locale=>:nl, :value=>"meer", :derivative_key=>"More", :key=>"word.more"}
+  => {:locale=>:nl, :value => "meer", :derivative_key => "More", :key => "word.more"}
   >> "More users".t.merged_strings.last.meta_data
-  => {:locale=>:nl, :value=>"gebruiker", :derivative_key=>"users", :key=>"word.user"}
+  => {:locale=>:nl, :value => "gebruiker", :derivative_key => "users", :key => ["word.user", "word.users"]}
   >> "One".t + " " + "question".t
   => "één vraag"
   >> ("One".t + " " + "question".t).merged_strings
