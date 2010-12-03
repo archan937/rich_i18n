@@ -181,6 +181,8 @@ When translating text, you possibly want to know the @key@, the @value@, the @lo
 
 Keep in mind that combined translations are possible and fortunately EnrichedString is able to cope with that. A concatenated translation has @merged_strings@ which contains every segments:
 
+*Note*: the examples with plural verbs, such as 'users', will only be translated to 'gebruikers' when you have included "Rich-pluralization":https://github.com/archan937/rich_pluralization
+
 <pre>
   >> "More users".t
   => "Meer gebruikers"
