@@ -66,7 +66,7 @@ module Rich
           data[:editable_input_type] = editable_input_type
 
           attrs << @meta_data[:html].collect{|k, v|      "#{k}='#{::ERB::Util.html_escape v}'"}.join(" ") if @meta_data[:html]
-          attrs << data             .collect{|k, v| "data-#{k}='#{::ERB::Util.html_escape v}'"}.join(" ")
+          attrs << data             .collect{|k, v| "data-#{k}='#{::ERB::Util.html_escape v.class.name == "Array" ? v.join(", ") : v}'"}.join(" ")
           attrs << "data-i18n_translation='#{::ERB::Util.html_escape to_str}'"
           attrs << "data-i18n_tag='#{@meta_data[:tag]}'" if @meta_data[:tag]
 
