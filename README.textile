@@ -176,7 +176,7 @@ When translating text, you possibly want to know the @key@, the @value@, the @lo
   >> "MORE".t.class
   => Rich::I18n::Core::EnrichedString
   >> "MORE".t.meta_data
-  => {:locale=>:nl, :value=>"meer", :derivative_key=>"MORE", :key=>"word.more"}
+  => {"locale" => :nl, "value" => "meer", "derivative_key" => "MORE", "key" => "word.more"}
 </pre>
 
 Keep in mind that combined translations are possible and fortunately EnrichedString is able to cope with that. A concatenated translation has @merged_strings@ which contains every segments:
@@ -191,12 +191,12 @@ Keep in mind that combined translations are possible and fortunately EnrichedStr
   >> "More users".t.meta_data
   => {}
   >> "More users".t.merged_strings.first.meta_data
-  => {:locale=>:nl, :value => "meer", :derivative_key => "More", :key => "word.more"}
+  => {"locale" => :nl, "value" => "meer", "derivative_key" => "More", "key" => "word.more"}
   >> "More users".t.merged_strings.last.meta_data
-  => {:locale=>:nl, :value => "gebruiker", :derivative_key => "users", :key => ["word.user", "word.users"]}
-  >> "One".t + " " + "question".t
+  => {"locale" => :nl, "value" => "gebruiker", "derivative_key" => "users", "key" => ["word.user", "word.users"]}
+  >> "one".t + " " + "question".t
   => "één vraag"
-  >> ("One".t + " " + "question".t).merged_strings
+  >> ("one".t + " " + "question".t).merged_strings
   => ["één", " ", "vraag"]
 </pre>
 
@@ -207,8 +207,8 @@ E9s adds the @to_output@ method to the String class. This returns the an @i18n t
 <pre>
   >> Rich::I18n::Engine.enable_enriched_output = true
   => true
-  >> "More users".t.to_output
-  => "<i18n data-value=\"meer\" data-locale=\"nl\" data-key=\"word.more\" data-derivative_key=\"More\">Meer</i18n> <i18n data-value=\"gebruiker\" data-locale=\"nl\" data-key=\"word.user\" data-derivative_key=\"users\">gebruikers</i18n>"
+  >> "More users".t.to_s
+  => "<i18n data-value='meer' data-locale='nl' data-key='word.more' data-derivative_key='More' data-editable_input_type='' data-i18n_translation='Meer'></i18n> <i18n data-value='gebruiker' data-locale='nl' data-key='word.user, word.users' data-derivative_key='users' data-editable_input_type='' data-i18n_translation='gebruikers'></i18n>"
 </pre>
 
 This can be very handy when implementing a CMS in which users change translations. Please note that "http://github.com/archan937/e9s-demo":http://github.com/archan937/e9s-demo uses this feature to highlight translations. Later on this will also be used in "Rich-CMS":http://github.com/archan937/rich_cms, a gem / plugin that makes inplace translating possible (please be patient for this to be released).

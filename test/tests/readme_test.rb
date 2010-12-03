@@ -21,7 +21,7 @@ class ReadmeTest < ActiveSupport::TestCase
         [Rich::I18n::Core::EnrichedString,
          "MORE".t.class],
 
-        [{:locale => :nl, :value => "meer", :derivative_key => "MORE", :key => "word.more"}.stringify_keys,
+        [{"locale" => :nl, "value" => "meer", "derivative_key" => "MORE", "key" => "word.more"},
          "MORE".t.meta_data],
 
         ["Meer gebruikers",
@@ -33,17 +33,17 @@ class ReadmeTest < ActiveSupport::TestCase
         [{},
          "More users".t.meta_data],
 
-        [{:locale => :nl, :value => "meer", :derivative_key => "More", :key => "word.more"}.stringify_keys,
+        [{"locale" => :nl, "value" => "meer", "derivative_key" => "More", "key" => "word.more"},
          "More users".t.merged_strings.first.meta_data],
 
-        [{:locale => :nl, :value => "gebruiker", :derivative_key => "users", :key => ["word.user", "word.users"]}.stringify_keys,
+        [{"locale" => :nl, "value" => "gebruiker", "derivative_key" => "users", "key" => ["word.user", "word.users"]},
          "More users".t.merged_strings.last.meta_data],
 
         ["één vraag",
-         "One".t + " " + "question".t],
+         "one".t + " " + "question".t],
 
         [["één", " ", "vraag"],
-         ("One".t + " " + "question".t).merged_strings],
+         ("one".t + " " + "question".t).merged_strings],
 
         [true,
          Rich::I18n::Engine.enable_enriched_output = true],
@@ -58,7 +58,7 @@ class ReadmeTest < ActiveSupport::TestCase
          "application.index.Welcome_to_our_site".t],
 
         ["Teken",
-          "Sign".t],
+         "Sign".t],
 
         ["MEER GEBRUIKERS",
          "MORE USERS".t],
