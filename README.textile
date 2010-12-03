@@ -189,7 +189,7 @@ Keep in mind that combined translations are possible and fortunately EnrichedStr
   >> "More users".t.merged_strings
   => ["Meer", " ", "gebruikers"]
   >> "More users".t.meta_data
-  => nil
+  => {}
   >> "More users".t.merged_strings.first.meta_data
   => {:locale=>:nl, :value => "meer", :derivative_key => "More", :key => "word.more"}
   >> "More users".t.merged_strings.last.meta_data
