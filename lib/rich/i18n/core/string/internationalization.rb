@@ -63,7 +63,7 @@ module Rich
 
                 array << " " unless array.empty?
                 array << EnrichedString.new(s, options.reject{|k, v| !RICH_CMS_OPTIONS.include? k.to_s}.merge({
-                  :key            => @@used_i18n_keys.size > 1 ? @@used_i18n_keys.join(", ") : key,
+                  :key            => @@used_i18n_keys.size > 1 ? @@used_i18n_keys.dup : key,
                   :value          => value,
                   :locale         => I18n.locale,
                   :derivative_key => string
