@@ -38,6 +38,10 @@ module Rich
           (@merged_strings || [self]).collect{|x| x.enriched? ? x.to_tag : x}.join("").html_safe
         end
 
+        def ===(other)
+          self.class == other.class && [:@string, :@meta_data, :@merged_strings].all?{|x| instance_variable_get(x) === other.instance_variable_get(x)}
+        end
+
         def method_missing(method, *args)
           if @string.respond_to? method
             @string.send method
