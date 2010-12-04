@@ -1,6 +1,5 @@
 module ActiveSupport
   module Dependencies
-
     extend self
 
     unless respond_to? :autoload_paths

@@ -1,4 +1,3 @@
-
 require "rich/i18n/core/symbol/internationalization"
 
 class Symbol

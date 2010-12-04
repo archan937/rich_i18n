@@ -1,4 +1,3 @@
-
 require "rich/i18n/core/array/merging"
 
 class Array

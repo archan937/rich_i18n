@@ -1,4 +1,3 @@
-
 require "rich/i18n/core/string/html_safe"
 require "rich/i18n/core/string/inflections"
 require "rich/i18n/core/string/internationalization"

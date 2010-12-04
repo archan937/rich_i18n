@@ -1,4 +1,3 @@
-
 module Rich
   module I18n
     module Actionpack
