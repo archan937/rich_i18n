@@ -12,14 +12,14 @@ module Rich
           @cache_translations     = true if @cache_translations    .nil?
 
           %w(controllers).each do |dir|
-            path = File.join File.dirname(__FILE__), "..", "..", "app", dir
+            path = File.expand_path "../../../app/#{dir}", __FILE__
             $LOAD_PATH << path
             ActiveSupport::Dependencies.autoload_paths << path
             ActiveSupport::Dependencies.autoload_once_paths.delete path
           end
 
           procedure = proc {
-            ::Jzip::Engine.add_template_location({File.expand_path("../../../../assets/jzip", __FILE__) => File.join(Rails.root, "public", "javascripts")})
+            ::Jzip::Engine.add_template_location({File.expand_path("../../../../assets/jzip", __FILE__) => File.expand_path("public/javascripts", Rails.root)})
             ::Formtastic::SemanticFormBuilder.escape_html_entities_in_hints_and_labels = false if ::Formtastic::SemanticFormBuilder.respond_to?(:escape_html_entities_in_hints_and_labels)
             load_i18n test_locale
             Rich::I18n::Engine.logger = Rails.logger
@@ -43,9 +43,9 @@ module Rich
 
         def load_i18n(test_locale)
           if test_locale
-            I18n.load_path  =    [File.join(File.dirname(__FILE__), "..", "..", "..", "locales", "#{test_locale}.yml")]
+            I18n.load_path  =    [File.expand_path("../../../../locales/#{test_locale}.yml", __FILE__)]
           else
-            I18n.load_path += Dir[File.join(File.dirname(__FILE__), "..", "..", "..", "locales", "*.yml")]
+            I18n.load_path += Dir[File.expand_path("../../../../locales/*.yml"             , __FILE__)]
           end
           I18n.backend.reload!
         end

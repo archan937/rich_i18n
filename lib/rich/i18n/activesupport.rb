@@ -1,1 +1,1 @@
-require File.join(File.dirname(__FILE__), "activesupport", "active_support", "dependencies.rb")
+require File.expand_path("../activesupport/active_support/dependencies", __FILE__)

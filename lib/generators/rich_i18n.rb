@@ -5,7 +5,7 @@ module RichI18n
 
     class Base < Rails::Generators::Base
       def self.source_root
-        File.expand_path File.join(File.dirname(__FILE__), "rich", generator_name, "templates")
+        File.expand_path "../rich/#{generator_name}/templates", __FILE__
       end
     end
 

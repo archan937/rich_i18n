@@ -1,1 +1,1 @@
-require File.join(File.dirname(__FILE__), "rails", "engine.rb")
+require File.expand_path("../rails/engine", __FILE__)
