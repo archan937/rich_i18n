@@ -30,7 +30,7 @@ module Locales
           end
         end
 
-        should "combined translations" do
+        should "combine translations" do
           assert_equal "vraag & antwoord"   , "question & answer".t
           assert_equal "Vraag & antwoord"   , "Question & answer".t
           assert_equal "Man / Vrouw"        , "Male / Female".t

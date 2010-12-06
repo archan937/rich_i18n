@@ -9,6 +9,17 @@ module Core
           assert_equal "hallo world", ["hallo"          , " ", "world"].join("")
           assert_equal "hallo world", ["hallo".html_safe, " ", "world"].join("")
           assert_equal "hallo world", ["hallo".t        , " ", "world"].join("")
+          assert_equal "hallo world", ["hallo".t        , " ", "world"].join
+        end
+
+        context "when containing at least one enriched string" do
+          should "return an enriched string when merging" do
+            pending
+          end
+
+          should "preserve the merged strings" do
+            pending
+          end
         end
       end
 

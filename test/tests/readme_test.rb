@@ -4,6 +4,12 @@ require "hpricot"
 
 class ReadmeTest < ActiveSupport::TestCase
 
+  should "translate 'Yes / No' correctly" do
+    pending do
+      assert_equal ["Ja / Nee", "Yes / No".t]
+    end
+  end
+
   context "The Dutch README examples" do
     setup do
       I18n.locale = ::Rich::I18n::Engine.init :nl
@@ -62,10 +68,6 @@ class ReadmeTest < ActiveSupport::TestCase
 
         ["MEER GEBRUIKERS",
          "MORE USERS".t],
-
-        # Pending
-        # ["Ja / Nee",
-        #  "Yes / No".t]
       ].
       each do |(expectation, result)|
         assert_equal expectation, result
@@ -86,9 +88,9 @@ class ReadmeTest < ActiveSupport::TestCase
       element2 = tag.children[2]
 
       assert_equal " ", element1.to_s
-      assert_equal({:"data-locale" => "nl", :"data-editable_input_type" => "", :"data-i18n_translation" => "Meer"      , :"data-value" => "meer"     , :"data-derivative_key" => "More" , :"data-key" => "word.more"}.stringify_keys,
+      assert_equal({"data-locale" => "nl", "data-editable_input_type" => "", "data-i18n_translation" => "Meer"      , "data-value" => "meer"     , "data-derivative_key" => "More" , "data-key" => "word.more"},
                    element0.raw_attributes)
-      assert_equal({:"data-locale" => "nl", :"data-editable_input_type" => "", :"data-i18n_translation" => "gebruikers", :"data-value" => "gebruiker", :"data-derivative_key" => "users", :"data-key" => "word.user, word.users"}.stringify_keys,
+      assert_equal({"data-locale" => "nl", "data-editable_input_type" => "", "data-i18n_translation" => "gebruikers", "data-value" => "gebruiker", "data-derivative_key" => "users", "data-key" => "word.user, word.users"},
                    element2.raw_attributes)
     end
   end
