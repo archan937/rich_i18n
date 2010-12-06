@@ -1,0 +1,16 @@
+<div class="content">
+  <div class="left">
+    <%= "application.index.header"   .t :tag => :h1   %>
+    <%= "application.index.paragraph".t :as  => :html %>
+  </div>
+  <ul>
+    <% ["Home", "Developers", "Comments", "Documentation", "Support", "About me"].each do |x| %>
+    <li>
+      <%= link_to x.t, "#" %>
+    </li>
+    <% end %>
+    <li>
+      <%= ["More".t, " ", "users".t].join "" %>
+    </li>
+  </ul>
+</div>
