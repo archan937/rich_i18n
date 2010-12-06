@@ -27,10 +27,15 @@ desc "Default: run unit tests."
 task :default => :test
 
 task :test do
-  Rake::Task["test:rails-3"].execute
+  Rake::Task["test:all"].execute
 end
 
 namespace :test do
+  desc "Test the rich_i18n plugin in Rails 2 and 3."
+  task :all do
+    system "rake test:rails-2"
+    system "rake test:rails-3"
+  end
   desc "Test the rich_i18n plugin in Rails 2."
   Rake::TestTask.new(:"rails-2") do |t|
     t.libs    << "lib"
