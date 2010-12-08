@@ -1,9 +1,12 @@
 <html>
   <head>
-    <title>Test Application » Rails <%= Rails::VERSION::STRING %></title>
+    <title>Test Application - Rails <%= Rails::VERSION::STRING %></title>
+    <%= stylesheet_link_tag "app" %>
   </head>
   <body>
     <%= rich_i18n %>
-    <%= yield %>
+    <div id="page">
+      <%= yield %>
+    </div>
   </body>
 </html>
