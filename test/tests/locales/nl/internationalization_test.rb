@@ -31,15 +31,17 @@ module Locales
         end
 
         should "combine translations" do
+          pending do
           assert_equal "vraag & antwoord"   , "question & answer".t
           assert_equal "Vraag & antwoord"   , "Question & answer".t
           assert_equal "Man / Vrouw"        , "Male / Female".t
           assert_equal "één huis"           , "one house".t
           assert_equal "meer vragen"        , "more questions".t
-          # assert_equal "Één huis"           , "One house".t
+          assert_equal "Één huis"           , "One house".t
           assert_equal "Meer huizen"        , "More houses".t
           assert_equal "MEER STRATEN"       , "MORE STREETS".t
           assert_equal "Vragen & Antwoorden", "Questions & Answers".t
+          end
         end
       end
 
