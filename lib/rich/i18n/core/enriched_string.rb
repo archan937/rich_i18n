@@ -22,7 +22,7 @@ module Rich
         end
 
         def concat(other)
-         (@merged_strings ||= [EnrichedString.new @string, @meta_data]) << other
+         (@merged_strings ||= [EnrichedString.new(@string, @meta_data)]) << other
           @meta_data = nil
           @string.concat other
           self
