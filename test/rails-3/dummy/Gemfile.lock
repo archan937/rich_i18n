@@ -133,7 +133,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capybara
   capybara-envjs
   launchy
   mocha
