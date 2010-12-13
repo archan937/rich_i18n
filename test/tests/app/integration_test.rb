@@ -2,7 +2,7 @@ require File.expand_path("../../../test_helper.rb", __FILE__)
 
 module App
   class IntegrationTest < ActionController::IntegrationTest
-    # fixtures :translations
+    fixtures :translations
 
     context "Rich-i18n" do
       should "render as expected" do
