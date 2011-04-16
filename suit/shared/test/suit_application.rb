@@ -3,25 +3,35 @@ require "gem_suit"
 
 class SuitApplication < GemSuit::Application
 
-  # def description
-  #   "My first GemSuit integration test"
-  # end
+  def prepare
+    generate_translation_model
+  end
 
-  # def prepare
-  #   generate_something
-  # end
+  def restore_files
+    delete  "db/migrate/*.rb"
+    delete  "test/fixtures/translations.yml"
+    delete  "test/unit/translation_test.rb"
+  end
 
-  # def config_for_template(path)
-  #   case path
-  #   when "Gemfile"
-  #     {"rails_gem_version" => "3.0.5"}
-  #   end
-  # end
+  def stash_files
+    delete "db/migrate/*.rb"
+    stash  "app/models/*.rb"
+    stash  "config/initializers/enrichments.rb"
+  end
 
 private
 
-  # def generate_something
-  #   generate "your_generator", "some_parameter"
-  # end
+  def generate_translation_model
+    generate generator_for(:translation), "Translation"
+  end
+
+  def generator_for(type)
+    case rails_version
+    when 2
+      "rich_#{type}"
+    when 3
+      "rich:#{type}"
+    end
+  end
 
 end
