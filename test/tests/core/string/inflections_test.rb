@@ -24,7 +24,7 @@ module Core
         assert_equal "Paul", "paul".upcase_first!
       end
 
-      test "singularize!" do
+      test "cp_case!" do
         assert_equal    nil,     "".cp_case!("")
         assert_equal    nil, "Paul".cp_case!("Engel")
         assert_equal    nil, "PAUL".cp_case!("ENGEL")
