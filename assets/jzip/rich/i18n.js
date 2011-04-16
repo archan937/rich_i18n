@@ -1,6 +1,7 @@
 
 Rich.I18n = (function() {
   return {
+    version: "1.3.4",
     beforeEdit: function(inputs, selector, specs, identifier) {
       var translated_keys = $("<input name='content_item[derivative_keys]' type='hidden'/>");
 
