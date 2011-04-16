@@ -60,7 +60,9 @@ module Rich
         def register_assets
           ::Jzip::Engine.add_template_location({File.expand_path("../../../../assets/jzip", __FILE__) => File.join(Rails.root, "public", "javascripts")})
           ::Sass::Plugin.add_template_location( File.expand_path("../../../../assets/sass", __FILE__),   File.join(Rails.root, "public", "stylesheets") )
-          # ::Formtastic::SemanticFormBuilder.escape_html_entities_in_hints_and_labels = false if ::Formtastic::SemanticFormBuilder.respond_to?(:escape_html_entities_in_hints_and_labels)
+          if defined?(::Formtastic) && ::Formtastic::SemanticFormBuilder.respond_to?(:escape_html_entities_in_hints_and_labels)
+            ::Formtastic::SemanticFormBuilder.escape_html_entities_in_hints_and_labels = false
+          end
         end
 
         def set_default_config
