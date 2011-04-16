@@ -3,6 +3,7 @@ source "http://rubygems.org"
 gem "rails", "2.3.11"
 gem "sqlite3-ruby", :require => "sqlite3"
 
+gem "rich_cms", "~> 3.1.0"
 gem "rich_i18n", :path => File.expand_path("../../../..", __FILE__)
 
 group :test do
