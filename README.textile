@@ -35,7 +35,7 @@ h3. More available features when using E9s (enrichments)
 
 h2. Installation
 
-h3. Using Rich-i18n as gem in Rails 3
+h3. Using Rich-i18n in Rails 3
 
 Add Rich-i18n in @Gemfile@ as a gem dependency:
 
@@ -46,10 +46,10 @@ Add Rich-i18n in @Gemfile@ as a gem dependency:
 Run the following in your console to install with Bundler:
 
 <pre>
-  sudo bundle install
+  bundle install
 </pre>
 
-h3. Using Rich-i18n as gem in Rails 2
+h3. Using Rich-i18n in Rails 2
 
 Add Rich-i18n in @environment.rb@ as a gem dependency:
 
@@ -61,18 +61,6 @@ Run the following in your console:
 
 <pre>
   sudo rake gems:install
-</pre>
-
-h3. Using Rich-i18n as plugin in Rails 3
-
-<pre>
-  rails plugin install git://github.com/archan937/rich_i18n.git
-</pre>
-
-h3. Using Rich-i18n as plugin in Rails 2
-
-<pre>
-  script/plugin install git://github.com/archan937/rich_i18n.git
 </pre>
 
 h3. Testing Rich-i18n out-of-the-box
