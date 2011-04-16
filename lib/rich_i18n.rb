@@ -1,4 +1,4 @@
-require "formtastic"
+# require "formtastic"
 require "jzip"
 
 require "rich/i18n"
@@ -7,4 +7,4 @@ require "rich/i18n/activesupport"
 require "rich/i18n/actionpack"
 require "rich/i18n/rails"
 require "rich/i18n/engine"
-require "rich/i18n/formtastic"
+# require "rich/i18n/formtastic"
