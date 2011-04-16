@@ -15,6 +15,7 @@ require "rich/i18n"
 require "rich/i18n/core"
 require "rich/i18n/actionpack"
 require "rich/i18n/engine"
+require "rich/i18n/enriched_string"
 require "rich/i18n/version"
 
 if defined?(Formtastic)

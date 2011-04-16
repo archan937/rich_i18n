@@ -1,4 +1,4 @@
-(required_files = %w(object string enriched_string)).each do |file|
+(required_files = %w(object string)).each do |file|
   require "rich/i18n/core/#{file}"
 end
 

@@ -19,7 +19,7 @@ class ReadmeTest < ActiveSupport::TestCase
         ["Man / Vrouw",
          "Male / Female".t],
 
-        [Rich::I18n::Core::EnrichedString,
+        [Rich::I18n::EnrichedString,
          "MORE".t.class],
 
         [{"locale" => :nl, "value" => "meer", "derivative_key" => "MORE", "key" => "word.more"},

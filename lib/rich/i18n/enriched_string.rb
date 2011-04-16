@@ -1,3 +1,5 @@
+require File.expand_path("../enriched_string/content.rb" , __FILE__)
+
 module Rich
   module I18n
     module Core
@@ -89,4 +91,4 @@ module Rich
   end
 end
 
-EnrichedString = Rich::I18n::Core::EnrichedString
+EnrichedString = Rich::I18n::EnrichedString
