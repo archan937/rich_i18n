@@ -4,7 +4,7 @@ require "haml"
 
 Rich::Support.append_gem_path File.expand_path("../..", __FILE__)
 
-%w(formtastic simple_form).each do |lib|
+%w(rich_pluralization formtastic simple_form).each do |lib|
   begin
     require lib
   rescue LoadError
