@@ -23,5 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "gem_suit"    , "~> 0.1.0"
   s.add_dependency "jzip"        , "~> 1.0.11"
   s.add_dependency "haml"        , "~> 3.0.25"
-  # hpricot i18n rich_cms
+  s.add_dependency "hpricot"
+  s.add_dependency "i18n"
+  # rich_cms
 end
