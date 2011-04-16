@@ -1,1 +1,0 @@
-require File.expand_path("../activesupport/active_support/dependencies", __FILE__)

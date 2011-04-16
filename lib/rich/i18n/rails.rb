@@ -1,1 +1,0 @@
-require File.expand_path("../rails/engine", __FILE__)

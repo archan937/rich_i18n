@@ -7,46 +7,21 @@ module Rich
         attr_accessor :logger, :enable_enriched_output, :cache_translations
 
         def init(test_locale = nil)
-          @enable_enriched_output = true if @enable_enriched_output.nil?
-          @cache_translations     = true if @cache_translations    .nil?
-
-          %w(controllers).each do |dir|
-            path = File.expand_path "../../../app/#{dir}", __FILE__
-            $LOAD_PATH << path
-            ActiveSupport::Dependencies.autoload_paths << path
-            ActiveSupport::Dependencies.autoload_once_paths.delete path
-          end
-
-          procedure = proc {
-            ::Jzip::Engine.add_template_location({File.expand_path("../../../../assets/jzip", __FILE__) => File.expand_path("public/javascripts", Rails.root)})
-            ::Formtastic::SemanticFormBuilder.escape_html_entities_in_hints_and_labels = false if ::Formtastic::SemanticFormBuilder.respond_to?(:escape_html_entities_in_hints_and_labels)
+          Rich::Support.after_initialize do
+            register_assets
+            set_default_config
             load_i18n test_locale
-            Rich::I18n::Engine.logger = Rails.logger
-          }
-
-          if Rails::VERSION::MAJOR >= 3
-            config.after_initialize do
-              procedure.call
-            end
-          else
-            procedure.call
           end
-
           test_locale
         end
+
+        # //////////////////////////////////
+        # // TODO: Check the following code!
+        # //////////////////////////////////
 
         def current_controller=(current_controller)
           @current_controller = current_controller
           @can_enrich_output  = nil
-        end
-
-        def load_i18n(test_locale)
-          if test_locale
-            I18n.load_path  =    [File.expand_path("../../../../locales/#{test_locale}.yml", __FILE__)]
-          else
-            I18n.load_path += Dir[File.expand_path("../../../../locales/*.yml"             , __FILE__)]
-          end
-          I18n.backend.reload!
         end
 
         def enable_i18n_cms(enriched_output_criteria = :current_rich_cms_admin, assign_i18n_backend = true)
@@ -74,6 +49,33 @@ module Rich
           else
             @can_enrich_output
           end
+        end
+
+        # //////////////////////////////////
+        # // END
+        # //////////////////////////////////
+
+      private
+
+        def register_assets
+          ::Jzip::Engine.add_template_location({File.expand_path("../../../../assets/jzip", __FILE__) => File.join(Rails.root, "public", "javascripts")})
+          ::Sass::Plugin.add_template_location( File.expand_path("../../../../assets/sass", __FILE__),   File.join(Rails.root, "public", "stylesheets") )
+          # ::Formtastic::SemanticFormBuilder.escape_html_entities_in_hints_and_labels = false if ::Formtastic::SemanticFormBuilder.respond_to?(:escape_html_entities_in_hints_and_labels)
+        end
+
+        def set_default_config
+          @enable_enriched_output = true if @enable_enriched_output.nil?
+          @cache_translations     = true if @cache_translations    .nil?
+          Rich::I18n::Engine.logger = Rails.logger
+        end
+
+        def load_i18n(test_locale)
+          if test_locale
+            I18n.load_path  =    [File.expand_path("../../../../locales/#{test_locale}.yml", __FILE__)]
+          else
+            I18n.load_path += Dir[File.expand_path("../../../../locales/*.yml"             , __FILE__)]
+          end
+          I18n.backend.reload!
         end
 
       end
