@@ -7,6 +7,7 @@ PATH
       hpricot
       i18n
       jzip (~> 1.0.11)
+      rich_cms (~> 3.1.0)
       rich_support (~> 0.1.0)
 
 GEM
@@ -42,11 +43,18 @@ GEM
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
     mime-types (1.16)
+    moneta (0.6.0)
     nokogiri (1.4.4)
     rack (1.2.2)
     rack-test (0.5.7)
       rack (>= 1.0)
     rake (0.8.7)
+    rich_cms (3.1.0)
+      gem_suit (~> 0.1.0)
+      haml (~> 3.0.25)
+      jzip (~> 1.0.11)
+      moneta (~> 0.6.0)
+      rich_support (~> 0.1.0)
     rich_support (0.1.0)
     rubyzip (0.9.4)
     selenium-webdriver (0.1.4)
