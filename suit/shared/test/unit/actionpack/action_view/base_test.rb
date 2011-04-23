@@ -5,11 +5,6 @@ module Unit
     module ActionView
       class BaseTest < ActiveSupport::TestCase
 
-        test "render_with_rich_i18n" do
-          pending
-          # mock / stub sanitizor
-        end
-
         context "An ActionView instance" do
           should "respond to :rich_i18n" do
             assert ::ActionView::Base.new.respond_to? :rich_i18n
@@ -17,6 +12,10 @@ module Unit
 
           should "respond to :render_with_rich_i18n" do
             assert ::ActionView::Base.new.respond_to? :render_with_rich_i18n
+          end
+
+          should "sanitize the rendered content when containing '<i18n '" do
+            # assert something
           end
         end
 

@@ -1,8 +1,8 @@
 <div class="content">
   <h1>Rich-i18n <%= Rails.env %> app</h1>
   <div class="left">
-    <%= "application.index.header"   .t :tag => :h1   %>
-    <%= "application.index.paragraph".t :as  => :html %>
+    <%= "application.index.Welcome_to_the_demo_page".t :tag => :h1   %>
+    <%= "application.index.paragraph"               .t :as  => :html %>
   </div>
   <ul>
     <li>
@@ -14,7 +14,7 @@
     <li>
       <%= link_to "Rich-i18n", "https://github.com/archan937/rich_i18n/tree/edge" %>
     </li>
-    <% ["Comments", "Documentation", "Support"].each do |x| %>
+    <% ["User", "Documentation", "Support", "Contact me"].each do |x| %>
     <li>
       <%= link_to x.t, "#" %>
     </li>

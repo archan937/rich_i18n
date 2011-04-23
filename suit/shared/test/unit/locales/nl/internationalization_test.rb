@@ -15,18 +15,18 @@ module Locales
 
         context "in English in singular form" do
           should "translate Dutch words" do
-            assert_equal   "huis",         "house".t.to_str
-            assert_equal  "vraag",      "question".t.to_str
-            assert_equal  "vraag", "word.question".t.to_str
-            assert_equal "straat",        "street".t.to_str
+            assert_equal   "huis",         "house".t
+            assert_equal  "vraag",      "question".t
+            assert_equal  "vraag", "word.question".t
+            assert_equal "straat",        "street".t
           end
 
           should "translate Dutch words preserving the letter casing" do
-            assert_equal    "meer",      "more".t.to_str
-            assert_equal    "Huis",     "House".t.to_str
-            assert_equal   "VRAAG",  "QUESTION".t.to_str
-            assert_equal  "VRAGEN", "QUESTIONS".t.to_str
-            assert_equal "Straten",   "Streets".t.to_str
+            assert_equal    "meer",      "more".t
+            assert_equal    "Huis",     "House".t
+            assert_equal   "VRAAG",  "QUESTION".t
+            assert_equal  "VRAGEN", "QUESTIONS".t
+            assert_equal "Straten",   "Streets".t
           end
         end
 

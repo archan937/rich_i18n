@@ -1,5 +1,6 @@
 require "rubygems"
 require "gem_suit/test_help"
+require "rich_pluralization"
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method

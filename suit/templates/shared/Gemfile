@@ -6,6 +6,7 @@ gem "sqlite3-ruby", :require => "sqlite3"
 gem "rich_i18n", :path => File.expand_path("../../../..", __FILE__)
 
 group :test do
+  gem "rich_pluralization"
   gem "mysql"
   gem "shoulda"
   gem "mocha"

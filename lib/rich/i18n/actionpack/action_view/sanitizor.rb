@@ -21,8 +21,7 @@ module Rich
             end
 
             (doc/"i18n").each do |i18n|
-              elem = Hpricot::Elem.new i18n.raw_attributes["data-i18n_tag"] || (i18n.raw_attributes["data-editable_input_type"] == "html" ? "div" : "span"),
-                                       i18n.raw_attributes.reject{|k, v| k == "data-i18n_translation"}.merge({:class => "i18n"})
+              elem = Hpricot::Elem.new i18n.raw_attributes["data-i18n_tag"], i18n.raw_attributes.reject{|k, v| k == "data-i18n_translation"}
               elem.inner_html = CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
               i18n.swap elem.to_html
             end

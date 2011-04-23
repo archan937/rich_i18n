@@ -86,10 +86,10 @@ class ReadmeTest < ActiveSupport::TestCase
       element1 = tag.children[1]
       element2 = tag.children[2]
 
-      assert_equal " ", element1.to_s
-      assert_equal({"data-locale" => "nl", "data-editable_input_type" => "", "data-i18n_translation" => "Meer"      , "data-value" => "meer"     , "data-derivative_key" => "More" , "data-key" => "word.more"},
+      assert_equal({"data-store_key" => "nl:word.more", "data-derivative_key" => "More", "data-i18n_translation" => "Meer", "data-i18n_tag"=>"span", "data-value" => "", "class" => "i18n"},
                    element0.raw_attributes)
-      assert_equal({"data-locale" => "nl", "data-editable_input_type" => "", "data-i18n_translation" => "gebruikers", "data-value" => "gebruiker", "data-derivative_key" => "users", "data-key" => "word.user, word.users"},
+      assert_equal " ", element1.to_s
+      assert_equal({"data-store_key" => "nl:word.user", "data-derivative_key" => "users", "data-i18n_translation" => "gebruikers", "data-i18n_tag"=>"span", "data-value" => "", "class" => "i18n"},
                    element2.raw_attributes)
     end
   end

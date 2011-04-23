@@ -88,37 +88,13 @@ Start translating in Dutch:
   => "Man / Vrouw"
 </pre>
 
-h2. Use the provided Rails generators
+h2. Rich-i18n Translation model
 
 Rich-i18n requires the following entity:
 
 * An @ActiveRecord@ model used for translations storage
 
-Fortunately, Rich-i18n is provided with a Rails generator with which you can generate the entity.
-
-h4. In Rails 3
-
-Run the following in your console:
-
-<pre>
-  rails g rich:translation -m
-</pre>
-
-*Note*: At default, it will create the @Translation@ class and @CreateTranslations@ migration. You can alter the class names with the following:
-
-<pre>
-  rails g rich:translation CodeHeroes::Translation -m
-</pre>
-
-*Note*: The generator has the @-m@ or @--migrate@ option which runs @rake db:migrate@ after creating the files.
-
-h4. In Rails 2
-
-Run the following in your console:
-
-<pre>
-  script/generate rich_i18n_translation -m
-</pre>
+Fortunately, Rich-i18n.
 
 h2. Usage
 

@@ -5,10 +5,6 @@ module Unit
     module ActionController
       class BaseTest < ActiveSupport::TestCase
 
-        test "prepare_rich_i18n" do
-          pending
-        end
-
         context "An ActionController instance" do
           should "respond to :prepare_rich_i18n" do
             assert ::ActionController::Base.new.respond_to? :prepare_rich_i18n

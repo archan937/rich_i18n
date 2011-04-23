@@ -4,10 +4,6 @@ module Core
   module String
     class InternationalizationTest < ActiveSupport::TestCase
 
-      test "methods" do
-        pending
-      end
-
       context "A String within the Dutch locale" do
         setup do
           I18n.locale = ::Rich::I18n::Engine.init :nl
@@ -15,6 +11,10 @@ module Core
 
         should "have the correct locale set" do
           assert_equal I18n.locale, :nl
+        end
+
+        should "concatenate and translate as expected" do
+          assert_equal "meer ", "more ".t
         end
       end
 
