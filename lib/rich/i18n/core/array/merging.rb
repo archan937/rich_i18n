@@ -18,7 +18,7 @@ module Rich
               each_with_index do |x, i|
                 result = "#{result}#{sep unless i.zero?}#{x.enriched? ? x.to_str : x}"
               end
-              any?(&:enriched?) ? ::Translation.new(nil, nil, dup.zip([sep] * (size - 1)).flatten.compact).tap{|t| t.value = result} : result
+              any?(&:enriched?) ? ::Translation.new(nil, nil, dup.zip([(sep unless sep == "")] * (size - 1)).flatten.compact).tap{|t| t.value = result} : result
             end
           end
 
