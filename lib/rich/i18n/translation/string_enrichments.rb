@@ -10,6 +10,7 @@ module Rich
             delegate      :==, :inspect, :to_str, :to => :value
           end
           base.send :include, InstanceMethods
+          base.alias_method_chain :value, :string_enrichments
         end
 
         module InstanceMethods
@@ -31,13 +32,20 @@ module Rich
           def concat(other)
            (@merged_strings ||= [::Translation.new(store_key, @options).tap{|t| t.value = value}]) << other
             @options = nil
-            value.concat other
             self
           end
           alias_method :<<, :concat
 
           def +(other)
             dup.concat(other)
+          end
+
+          def value_with_string_enrichments
+            if @merged_strings.blank?
+              value_without_string_enrichments
+            else
+              @merged_strings.collect{|x| x.enriched? ? x.value : x}.join ""
+            end
           end
 
           def to_s
