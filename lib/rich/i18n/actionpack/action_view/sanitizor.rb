@@ -21,7 +21,7 @@ module Rich
             end
 
             (doc/"i18n").each do |i18n|
-              elem = Hpricot::Elem.new i18n.raw_attributes["data-i18n_tag"], i18n.raw_attributes.reject{|k, v| k == "data-i18n_translation"}
+              elem = Hpricot::Elem.new i18n.raw_attributes["data-i18n_tag"], i18n.raw_attributes.reject{|k, v| %w(data-i18n_tag data-i18n_translation).include? k}
               elem.inner_html = CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
               i18n.swap elem.to_html
             end
@@ -43,7 +43,6 @@ module Rich
               end
 
               input.attributes[input_attr] = CGI.unescapeHTML(i18n.raw_attributes["data-i18n_translation"])
-              input.attributes["class"] = ["i18n", input.attributes["class"]].uniq.join(" ").strip
             end
           end
 
