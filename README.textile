@@ -31,7 +31,7 @@ h3. More available features when using E9s (enrichments)
 * @An easy interface for localized pluralizations@ - Just call the @pl@ method on string or symbols to pluralize
 * @Preserve pluralization@ - E9s singularizes or pluralizes your translations depending on the key: @"house".t@ returns @"huis"@ and @"Houses".t@ returns @"Huizen"@ in Dutch
 
-*Note*: keep in mind that you will have to use E9s to do this, please visit "http://github.com/archan937/e9s":http://github.com/archan937/e9s for more information.
+*Note*: Keep in mind that you will have to use E9s to do this, please visit "http://github.com/archan937/e9s":http://github.com/archan937/e9s for more information.
 
 h2. Installation
 
@@ -90,21 +90,78 @@ Start translating in Dutch:
 
 h2. Rich-i18n Translation model
 
-Rich-i18n requires the following entity:
+Rich-i18n requires only one entity which is the @Translation@ model that is already defined within Rich-i18n itself. As it includes the "Rich::Cms::Content module":https://github.com/archan937/rich_cms/blob/edge/lib/rich/cms/content.rb defined within "Rich-CMS":https://github.com/archan937/rich_cms/tree/edge and thus uses "Moneta":https://github.com/wycats/moneta as storage engine.
 
-* An @ActiveRecord@ model used for translations storage
+At default, the @Translation@ model uses is the in-memory storage which is not preferred in most cases. The change the storage strategy, reopen the @Translation@ class and assign the storage strategy:
 
-Fortunately, Rich-i18n.
+<pre>
+  class Translation
+    storage :active_record
+  end
+</pre>
+
+*Note*: Make sure you have a migration which created the corresponding table.
+
+Fortunately, Rich-i18n has a Rails generator which does defines the storage strategy and create the @CreateTranslations@ ActiveRecord migration.
+
+h4. In Rails 3
+
+Run the following in your console:
+
+<pre>
+  rails g rich:translation -m
+</pre>
+
+*Note*: The generator has the -m or --migrate option which runs rake db:migrate after creating the files.
+
+h4. In Rails 2
+
+Run the following in your console:
+
+<pre>
+  script/generate rich_i18n_translation -m
+</pre>
 
 h2. Usage
 
-Just call the @t@ method on string or symbols to translate using Rich-i18n.
+h3. How to translate
+
+Just call the @t@ method on string or symbols:
+
+<pre>
+  >> "Male / Female".t
+  => "Man / Vrouw"
+  >> :house.t
+  => "huis"
+</pre>
+
+*Note*: @I18n.locale@ is set to @:nl@.
+
+At default, I18n uses @I18n::Backend::Simple@ of which translations are stored within YAML files located in @config/locales@.
+
+As of version @1.4.0@, Rich-i18n does *NOT* use @I18n::Backend::Chain@ for cascading translations anymore. During translation, Rich-i18n searches for a matching translation in the following order:
+
+# the @Moneta@ storage engine (e.g. @ActiveRecord@ and thus @MySQL@)
+# the @I18n@ translation module using @I18n.t@
+
+h3. Default values and case preservation
+
+When not having found a translation, Rich-i18n returns a default value based on the key passed: it splits the key on @"."@ and (sort of) humanizes the last part. Sort of, because it actually replaces @"_"@ with @" "@ and it copies the casing of the key with the @copy_case@ method of the @String@ class.
+
+<pre>
+  >> "save".t
+  => "save"
+  >> "homepage.header".t
+  => "header"
+  >> "application.index.Welcome_to_our_site".t
+  => "Welcome to our site"
+</pre>
 
 h3. Populating config/locales
 
-At default, I18n uses @I18n::Backend::Simple@ of which translations are stored within YAML files located in @config/locales@. When adding a new language, it is adviced to copy a YAML file from "http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale":http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale in which you can add your translations. Of course, you can also use other I18n backends like @I18n::Backend::ActiveRecord@ for translations stored in the database.
+Store default translations within YAML files in @config/locales@. When adding a new language, it is adviced to copy a YAML file from "http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale":http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale in which you can add your translations.
 
-*Note*: specified in @config/locales/nl.yml@
+h4. Example
 
 <pre>
 ---
@@ -120,62 +177,88 @@ nl:
     more:    meer
 </pre>
 
+*Note*: Specified in @config/locales/nl.yml@
+
 h3. String methods
 
-Rich-i18n has enriched the String class with several inflection methods such as @upcase_first@, @cp_case@, @upcase_first!@ and @pluralize!@. Please visit "http://github.com/archan937/rich_i18n/blob/master/lib/rich/i18n/core/string/inflections.rb":http://github.com/archan937/rich_i18n/blob/master/lib/rich/i18n/core/string/inflections.rb to see all the methods.
+Rich-i18n uses "Rich-Support":https://github.com/archan937/rich_support which enriches the String class with several inflection methods such as @upcase_first@, @copy_case@, @upcase_first!@ and @pluralize!@. Please visit "https://github.com/archan937/rich_support/blob/master/lib/rich/support/core/string/inflections.rb":https://github.com/archan937/rich_support/blob/master/lib/rich/support/core/string/inflections.rb to see all the methods.
 
-h3. Default values and case preservation
+h3. Combined translations
 
-When not specified, Rich-i18n returns a default value based on the passed key: it splits the key on @"."@ and (sort of) humanizes the last part. Sort of, because it actually replaces @"_"@ with @" "@ and it copies the casing of the key with the @cp_case@ method of the @String@ class.
-
-h3. Combined keys
-
-You can combine translations by using passed string containing translation keys joined with spaces.
-
-h3. Translation meta data with EnrichedString
-
-When translating text, you possibly want to know the @key@, the @value@, the @locale@ and the @derivative key@ (the argument passed for translation). Rich-i18n preserves just that in an @EnrichedString@ which is a wrapper containing meta data and the translation. Calling @.meta_data@ returns a hash with the meta data:
+You can combine translations by using a string which consists of multiple translation keys separated with spaces @" "@.
 
 <pre>
-  >> "MORE".t.class
-  => Rich::I18n::Core::EnrichedString
-  >> "MORE".t.meta_data
-  => {"locale" => :nl, "value" => "meer", "derivative_key" => "MORE", "key" => "word.more"}
+  >> "More users".t
+  => "Meer gebruikers"
 </pre>
 
-Keep in mind that combined translations are possible and fortunately EnrichedString is able to cope with that. A concatenated translation has @merged_strings@ which contains every segments:
+h3. Translation meta data
 
-*Note*: the examples with plural verbs, such as 'users', will only be translated to 'gebruikers' when you have included "Rich-pluralization":https://github.com/archan937/rich_pluralization
+When translating text, you possibly want to know the @key@, the @value@, the @locale@ and the @derivative key@ (the argument passed for translation):
+
+<pre>
+  >> "More".t
+  => "Meer"
+  >> "More".t.class
+  => Translation
+  >> pp "More".t.meta_data
+  {:derivative_key=>"More",
+   :derivative_value=>"Meer",
+   :pluralized=>false,
+   :store_key=>"nl:word.more",
+   :store_value=>nil,
+   :i18n_locale=>"nl",
+   :i18n_key=>"word.more",
+   :i18n_value=>"meer"}
+  => nil
+</pre>
+
+A concatenated translation has @merged_strings@ which contains every segments:
+
+*Note*: The examples with plural verbs, such as 'users', will only be translated to 'gebruikers' when you have required "Rich-pluralization":https://github.com/archan937/rich_pluralization.
 
 <pre>
   >> "More users".t
   => "Meer gebruikers"
   >> "More users".t.merged_strings
   => ["Meer", " ", "gebruikers"]
-  >> "More users".t.meta_data
-  => {}
-  >> "More users".t.merged_strings.first.meta_data
-  => {"locale" => :nl, "value" => "meer", "derivative_key" => "More", "key" => "word.more"}
-  >> "More users".t.merged_strings.last.meta_data
-  => {"locale" => :nl, "value" => "gebruiker", "derivative_key" => "users", "key" => ["word.user", "word.users"]}
-  >> "one".t + " " + "question".t
-  => "één vraag"
-  >> ("one".t + " " + "question".t).merged_strings
-  => ["één", " ", "vraag"]
+  >> "More users".t.merged_strings.collect(&:class)
+  => [Translation, String, Translation]
+  >> pp "More users".t.merged_strings.last.meta_data
+  {:derivative_key=>"users",
+   :derivative_value=>"gebruikers",
+   :pluralized=>true,
+   :store_key=>"nl:word.user",
+   :store_value=>nil,
+   :i18n_locale=>"nl",
+   :i18n_key=>"word.user",
+   :i18n_value=>"gebruiker"}
+  => nil
 </pre>
 
-h3. String.to_output
+h3. Translating in the front-end
 
-E9s adds the @to_output@ method to the String class. This returns the an @i18n tag@ with @HTML 5 attributes@ in which the translation meta data is provided:
+*Note*: Front-end translation is only possible when you are using "E9s":https://github.com/archan937/e9s or when you have enabled "Rich-CMS":https://github.com/archan937/rich_cms Translation editing.
 
 <pre>
-  >> Rich::I18n::Engine.enable_enriched_output = true
-  => true
-  >> "More users".t.to_s
-  => "<i18n data-value='meer' data-locale='nl' data-key='word.more' data-derivative_key='More' data-editable_input_type='' data-i18n_translation='Meer'></i18n> <i18n data-value='gebruiker' data-locale='nl' data-key='word.user, word.users' data-derivative_key='users' data-editable_input_type='' data-i18n_translation='gebruikers'></i18n>"
+  class Translation
+    cmsable
+  end
 </pre>
 
-This can be very handy when implementing a CMS in which users change translations. Please note that "http://github.com/archan937/e9s-demo":http://github.com/archan937/e9s-demo uses this feature to highlight translations. Later on this will also be used in "Rich-CMS":http://github.com/archan937/rich_cms, a gem / plugin that makes inplace translating possible (please be patient for this to be released).
+Rich-CMS adds the @to_tag@ method to the Translation class. This returns the an @i18n tag@ with @HTML 5 attributes@ in which translation information is provided:
+
+<pre>
+  >> "Users".t.to_tag
+  => "<i18n class=\"i18n\" data-store_key=\"nl:word.user\" data-store_value=\"\" data-derivative_key=\"Users\" data-i18n_tag=\"span\" data-i18n_translation=\"Gebruikers\"></i18n>"
+</pre>
+
+When rendering, @Rich::I18n::Actionpack::ActionView::Sanitizor@ (I know, that's a long name) will change it into a HTML 5 valid tag using "Hpricot":http://github.com/whymirror/hpricot:
+
+<pre>
+  >> Rich::I18n::Actionpack::ActionView::Sanitizor.sanitize_html "Users".t.to_tag
+  => "<span data-store_key=\"nl:word.user\" class=\"i18n\" data-store_value=\"\" data-derivative_key=\"Users\">Gebruikers</span>"
+</pre>
 
 h3. I18n examples
 
@@ -200,7 +283,7 @@ h3. Labels and seatholders
 
 You can translate @labels@ and @seatholders@ (placeholders :D) within Formtastic forms without altering its code.
 
-*Note*: specified in @config/locales/nl.yml@
+*Note*: Specified in @config/locales/nl.yml@
 
 <pre>
 ---
@@ -245,29 +328,28 @@ For support, remarks and requests please mail me at "paul.engel@holder.nl":mailt
 
 h2. Credit
 
-This Rails gem / plugin depends on:
+This Rails gem depends on:
 
 i18n<br>
 "http://github.com/svenfuchs/i18n":http://github.com/svenfuchs/i18n
 
+Rich-CMS<br>
+"http://codehero.es/rails_gems_plugins/rich_cms":http://codehero.es/rails_gems_plugins/rich_cms <br>
+"http://github.com/archan937/rich_cms":http://github.com/archan937/rich_cms
+
+SeatHolder<br>
+"http://codehero.es/jquery_libraries/seat_holder":http://codehero.es/jquery_libraries/seat_holder <br>
+"http://github.com/archan937/seat_holder":http://github.com/archan937/seat_holder
+
 Hpricot<br>
-"http://github.com/whymirror/hpricot":http://github.com/whymirror/hpricot (thanks Why!)
+"http://github.com/whymirror/hpricot":http://github.com/whymirror/hpricot
 
 Formtastic (optional)<br>
 "http://github.com/justinfrench/formtastic":http://github.com/justinfrench/formtastic
 
-Rich-CMS (optional)<br>
-"http://codehero.es/rails_gems_plugins/rich_cms":http://codehero.es/rails_gems_plugins/rich_cms <br>
-"http://github.com/archan937/rich_cms":http://github.com/archan937/rich_cms
-
-SeatHolder (optional)<br>
-"http://codehero.es/jquery_libraries/seat_holder":http://codehero.es/jquery_libraries/seat_holder <br>
-"http://github.com/archan937/seat_holder":http://github.com/archan937/seat_holder
-
 h2. ToDo's
 
 * Use a better implementation to tackle String interpolation (e.g. "foo #{"bar".t}") to preserve meta data
-* Most String inflection methods are also defined in rich_pluralization (keep it DRY)
 
 h2. Enrichments
 
