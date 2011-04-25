@@ -5,6 +5,7 @@ module Rich
 
         def self.included(base)
           base.extend ClassMethods
+          base.send :include, InstanceMethods
           base.class_eval do
             attr_accessor :derivative_key
             attr_accessor :pluralized
@@ -52,6 +53,21 @@ module Rich
           def valid_match?(instance)
             instance.send :default_value
             !!instance.instance_variable_get(:@translation)
+          end
+
+        end
+
+        module InstanceMethods
+
+          def meta_data
+            {:derivative_key   => derivative_key,
+             :derivative_value => value,
+             :pluralized       => pluralized,
+             :store_key        => store_key,
+             :store_value      => (@store_value unless @store_value.blank?),
+             :i18n_locale      => locale,
+             :i18n_key         => key,
+             :i18n_value       => I18n.t(key, :locale => locale)}
           end
 
         end
