@@ -90,9 +90,9 @@ Start translating in Dutch:
 
 h2. Rich-i18n Translation model
 
-Rich-i18n requires only one entity which is the @Translation@ model that is already defined within Rich-i18n itself. As it includes the "Rich::Cms::Content module":https://github.com/archan937/rich_cms/blob/edge/lib/rich/cms/content.rb defined within "Rich-CMS":https://github.com/archan937/rich_cms/tree/edge and thus uses "Moneta":https://github.com/wycats/moneta as storage engine.
+Rich-i18n requires only one entity which is the @Translation@ model and is already defined within Rich-i18n itself. It includes the "Rich::Cms::Content module":https://github.com/archan937/rich_cms/blob/edge/lib/rich/cms/content.rb defined within "Rich-CMS":https://github.com/archan937/rich_cms/tree/edge and thus uses "Moneta":https://github.com/wycats/moneta as storage engine.
 
-At default, the @Translation@ model uses is the in-memory storage which is not preferred in most cases. The change the storage strategy, reopen the @Translation@ class and assign the storage strategy:
+At default, the @Translation@ model uses is the in-memory storage which is not preferred in most cases. To change the storage strategy, reopen the @Translation@ class and assign the storage strategy:
 
 <pre>
   class Translation
@@ -102,7 +102,7 @@ At default, the @Translation@ model uses is the in-memory storage which is not p
 
 *Note*: Make sure you have a migration which created the corresponding table.
 
-Fortunately, Rich-i18n has a Rails generator which does defines the storage strategy and create the @CreateTranslations@ ActiveRecord migration.
+Fortunately, Rich-i18n has a Rails generator which defines the storage strategy and create the @CreateTranslations@ ActiveRecord migration.
 
 h4. In Rails 3
 
