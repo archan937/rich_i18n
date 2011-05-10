@@ -12,6 +12,7 @@ module Rich
               config.before_edit  "Rich.I18n.beforeEdit"
               config.after_update "Rich.I18n.afterUpdate"
             end
+            cmsable defined?(E9s)
           end
         end
 
