@@ -7,6 +7,9 @@ class ReadmeTest < ActiveSupport::TestCase
   context "The Dutch README examples" do
     setup do
       I18n.locale = ::Rich::I18n::Engine.init :nl
+      class ::Translation
+        cmsable
+      end
     end
 
     should "have the correct locale set" do
@@ -69,11 +72,37 @@ class ReadmeTest < ActiveSupport::TestCase
           :i18n_value       => "gebruiker"},
          "More users".t.merged_strings.last.meta_data],
 
-        ["<i18n class=\"i18n\" data-store_key=\"nl:word.user\" data-store_value=\"\" data-derivative_key=\"Users\" data-i18n_tag=\"span\" data-i18n_translation=\"Gebruikers\"></i18n>",
-         "Users".t.to_tag],
+        [true,
+         Translation.cmsable?],
 
-        ["<span data-store_key=\"nl:word.user\" class=\"i18n\" data-store_value=\"\" data-derivative_key=\"Users\">Gebruikers</span>",
-         Rich::I18n::Actionpack::ActionView::Sanitizor.sanitize_html("Users".t.to_tag)],
+        [true,
+         "Users".t.cmsable?],
+
+        ["<i18n ",
+         "Users".t.to_tag[0..5]],
+
+        ["",
+         Hpricot("Users".t.to_tag).children[0].html],
+
+        [{"class"                 => "i18n",
+          "data-store_key"        => "nl:word.user",
+          "data-store_value"      => "",
+          "data-derivative_key"   => "Users",
+          "data-i18n_tag"         => "span",
+          "data-i18n_translation" => "Gebruikers"},
+         Hpricot("Users".t.to_tag).children[0].raw_attributes],
+
+        ["<span ",
+         Rich::I18n::Actionpack::ActionView::Sanitizor.sanitize_html("Users".t.to_tag)[0..5]],
+
+        ["Gebruikers",
+         Hpricot(Rich::I18n::Actionpack::ActionView::Sanitizor.sanitize_html("Users".t.to_tag)).children[0].html],
+
+        [{"class"               => "i18n",
+          "data-store_key"      => "nl:word.user",
+          "data-store_value"    => "",
+          "data-derivative_key" => "Users"},
+         Hpricot(Rich::I18n::Actionpack::ActionView::Sanitizor.sanitize_html("Users".t.to_tag)).children[0].raw_attributes],
 
         ["huis",
          "house".t],
