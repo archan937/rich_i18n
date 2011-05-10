@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["paul.engel@holder.nl"]
   s.homepage    = "http://codehero.es/rails_gems_plugins/rich_i18n"
   s.summary     = %q{Enrichments (e9s) module for internationalization (i18n)}
-  s.description = %q{Rich-i18n is a module of E9s (http://github.com/archan937/e9s) which enriches I18n, Formtastic, the String and Symbol classes. This simplifies internationalization of your Rails application making a Rails developers life much easier.}
+  s.description = %q{Rich-i18n is a module of E9s (http://github.com/archan937/e9s) which enriches I18n, SimpleForm / Formtastic, the String and Symbol classes. This simplifies internationalization of your Rails application making a Rails developers life much easier.}
 
   s.rubyforge_project = "rich_i18n"
 
