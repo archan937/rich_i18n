@@ -352,6 +352,7 @@ SimpleForm (optional)<br>
 
 h2. ToDo's
 
+* Fix Formtastic support and implement SimpleForm support
 * Use a better implementation to tackle String interpolation (e.g. "foo #{"bar".t}") to preserve meta data
 
 h2. Enrichments
