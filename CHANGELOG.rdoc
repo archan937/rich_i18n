@@ -3,6 +3,7 @@
 == Version 1.4.0 (April xxx, 2011)
 
 * Using GemSuit and Rich-Support (booya!)
+* Using Jzip v1.1.0
 * Removed plugin related code
 
 == Version 1.3.4 (November 13, 2010)
