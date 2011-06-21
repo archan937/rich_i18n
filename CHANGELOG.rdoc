@@ -3,7 +3,10 @@
 == Version 1.4.0 (April xxx, 2011)
 
 * Using GemSuit and Rich-Support (booya!)
-* Using Jzip v1.1.0
+* Using Rich-CMS v3.1.0
+* Removed HAML and Jzip as gem dependencies:
+  - not compiling SASS and Jzip templates at runtime anymore
+  - copying assets (images, javascripts and stylesheets) into public directory unless it already exists
 * Removed plugin related code
 
 == Version 1.3.4 (November 13, 2010)

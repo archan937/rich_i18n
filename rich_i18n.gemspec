@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency "rich_support", "~> 0.1.1"
   s.add_dependency "rich_cms"    , "~> 3.1.0"
   s.add_dependency "gem_suit"    , "~> 0.1.2"
-  s.add_dependency "jzip"        , "~> 1.1.0"
-  s.add_dependency "haml"        , "~> 3.0.25"
   s.add_dependency "hpricot"
   s.add_dependency "i18n"
+
+  s.add_development_dependency "jzip", "~> 1.1.0"
 end

@@ -8,7 +8,8 @@ module Rich
 
         def init(test_locale = nil)
           Rich::Support.after_initialize do
-            register_assets
+            copy_assets
+            configure_formtastic
             set_default_config
             load_i18n test_locale
           end
@@ -17,9 +18,22 @@ module Rich
 
       private
 
-        def register_assets
-          ::Jzip::Engine.add_template_location({File.expand_path("../../../../assets/jzip", __FILE__) => File.join(Rails.root, "public", "javascripts")})
-          ::Sass::Plugin.add_template_location( File.expand_path("../../../../assets/sass", __FILE__),   File.join(Rails.root, "public", "stylesheets") )
+        def copy_assets
+          %w(images javascripts stylesheets).each do |dir|
+            source_dir = File.join File.expand_path("../../../../assets/public/#{dir}", __FILE__)
+            target_dir = File.join Rails.root, "public/#{dir}"
+
+            Dir["#{source_dir}/**/*.*"].each do |source|
+              target = source.gsub source_dir, target_dir
+              unless File.exists? target
+                FileUtils.mkdir_p File.dirname(target)
+                FileUtils.cp source, target
+              end
+            end
+          end
+        end
+
+        def configure_formtastic
           if defined?(::Formtastic) && ::Formtastic::SemanticFormBuilder.respond_to?(:escape_html_entities_in_hints_and_labels)
             ::Formtastic::SemanticFormBuilder.escape_html_entities_in_hints_and_labels = false
           end

@@ -1,8 +1,6 @@
 require "rich_support"
 require "rich_cms"
 require "i18n"
-require "jzip"
-require "haml"
 
 Rich::Support.append_gem_path File.expand_path("../..", __FILE__)
 
